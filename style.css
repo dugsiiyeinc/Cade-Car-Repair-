@@ -412,20 +412,7 @@ border-radius: 5px;
 .booking-model-container.active{
     display: block;
 }
-#booking-model-form{
-    /* display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 1rem; */
-/* width: 80%;
-margin: auto; */
-/* background-color: #fff; */
-/* padding: 15px;
-border-radius: 10px;
-height: 80vh;
-margin: 80px ; */
 
-  
-}
 #booking-model-form h2{
     text-align: center;
     font-size: 18px;
