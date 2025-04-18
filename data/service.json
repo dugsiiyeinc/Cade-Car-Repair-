@@ -1,0 +1,34 @@
+[
+    {
+        "id": 1,
+        "image": "../images/home-05-210x210.jpg",
+        "title": "Engine Repair",
+        "description": "We take the welfare of your engine seriously and offer services to prevent the need for future engine replacement.",
+        "price": 40,
+        "button": "Booking Now"
+    },
+    {
+        "id": 2,
+        "image": "../images/home-04-210x210.jpg",
+        "title": "Brake Repair",
+        "description": "From the brake pedal to hydraulic brake fluid, our technicians can perform brake repair on any make and model.",
+        "price": 15,
+        "button": "Booking Now"
+    },
+    {
+        "id": 3,
+        "image": "../images/home-06-210x210.jpg",
+        "title": "Oil Change",
+        "description": "One of the most effective and inexpensive ways to help protect your car, is to change the oil and the oil filter regularly.",
+        "price": 5,
+        "button": "Booking Now"
+    },
+    {
+        "id": 4,
+        "image": "../images/istockphoto-1663395326-612x612.jpg",
+        "title": "Wheel Change",
+        "description": "We provide extensive wheel change services that include emergency tire replacement when you are on the road.",
+        "price": 25,
+        "button": "Booking Now"
+    }
+]

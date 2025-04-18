@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+body{
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+   background-color: white;
+}
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.autho-model{
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+
+   min-height: 100vh;
+}
+
+.autho-container{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+  width: 500px;
+    box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+
+    
+}
+
+#formTitle{
+    color: #082b84;
+}
+
+#autho-form{
+    display: flex;
+    flex-direction: column; 
+   width: 100%;
+
+}
+
+#autho-form input{
+    margin-bottom: 18px;
+    padding: 8px;
+    border: 1px solid #95b2fe;
+    border-radius: 5px;
+    outline-color: #95b2fe;
+}
+
+#authButton{
+    padding: 8px;
+    background-color: #1557ff ;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out ;
+}
+
+#authButton:hover{
+    background-color: #082b84;
+}
+
+#authSwitch{
+    font-size: 12px;
+    color:#434343 ;
+    font-weight: 500;
+}
+#login{
+    display: none;
+}
+#authSwitch a{
+    color: #082b84;
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+@media (max-width:768px) {
+    .autho-container{
+        max-width: 90%;
+    }
+   
+}

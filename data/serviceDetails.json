@@ -1,0 +1,44 @@
+[
+    {
+        "id": 1,
+       "title1": "Engine Servicing",
+       "title2": "tires replacement",
+       "title3": "oil change",
+       "title4": "brake repair",
+      "image1": "../images/services_2Engingservice.png",
+      "image2": "../images/services_3 wheel.png",
+      "image3": "../images/services_4 oil change.png",
+      "image4": "../images/service.5 brake.jpg",
+      "subtitle": "We take the welfare of your engine seriously and offer services to prevent the need for future engine replacement.",
+      "lists1":[{
+        "id": 2,
+       "list1": "Check Engine Light Diagnosis  ",
+       "list2": "Engine Tune-Up  Adjustments for optimal performance..",
+       "list3": "Air Filter Replacement  Improves air intake and engine performance."
+      }],
+      "lists2":[{
+        "id": 3,
+        "list1": "Tire Replacement  Installing new tires",
+        "list2": "Wheel Balancing  Ensuring even weight distribution for a smooth ride",
+        "list3": "Wheel Balancing  Ensuring even weight distribution for a smooth ride"
+       }],
+       "lists3":[{
+        "id": 4,
+        "list1": "Standard Oil Change Replacing old engine oil with new oil.",
+        "list2": "High-Mileage Oil Change  Special oil for vehicles with 75,000+ miles.",
+        "list3": "Oil Filter Replacement  Changing the oil filter for cleaner oil circulation."
+       }],
+       "lists4":[{
+        "id": 5,
+        "list1": "Standard Oil Change Replacing old engine oil with new oil.",
+        "list2": "High-Mileage Oil Change  Special oil for vehicles with 75,000+ miles.",
+        "list3": "Oil Filter Replacement  Changing the oil filter for cleaner oil circulation."
+       }],
+    "price": 45
+    }
+ 
+   
+
+   
+    
+]

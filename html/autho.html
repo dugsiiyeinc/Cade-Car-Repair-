@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>authotencation page</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<!-- autho.js -->
+<script src="../js/autho.js" defer></script>
+
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../css/autho.css">
+</head>
+<body>
+   <!-- header -->
+ <div class="boder-header">
+        <div class="header" id="header">
+            <!-- desktopmenu -->
+            <div class="logo">
+             <img src="../images/cade log2.png" alt="">
+            </div>
+            <div class="menus deskitop-menus">
+                <ul>
+                    <li> <a href="../index.html">home</a></li>
+                    <li> <a href="./about.html">about</a></li>
+                    <li> <a href="./service.html">services</a></li>
+                    <li> <a href="./contactUs.html">contact</a></li>
+                </ul>
+              
+            </div>
+            <div class="btns deskitop-menus">
+                <div class="lights">
+                    
+                    <!-- <i class="fa-solid fa-moon"></i> -->
+                    <!-- <i class="fa-solid fa-user"></i>
+                     <span class="usericon"></span> -->
+                     
+                </div>
+                <!-- <a href="./html/dashboard.html" class="Disktop-dashboardShowLogIN"><i class="fa-solid fa-gauge"></i></a>
+               <a href="./html/autho.html" id="login"> <button>log in</button></a>
+               <button class="logOut">logOut</button> -->
+            </div>
+    
+            <!-- mobile mune -->
+             <div class="mobile-menus  ">
+                <div class="menus ">
+                    <ul>
+                        <li> <a href="../index.html">home</a></li>
+                        <li> <a href="./about.html">about</a></li>
+                        <li> <a href="./service.html">services</a></li>
+                        <li> <a href="./contactUs.html">contact</a></li>
+                    </ul>
+                  
+                </div>
+                <div class="btns ">
+                    <div class="lights">
+                        <!-- <i class="fa-solid fa-moon"></i> -->
+                        <i class="fa-solid fa-user mobilUserIcon"></i>
+                        <span class="mobile-usericon"></span>
+                    </div>
+                    <a href="#" class="mobile-dashboardShowLogIN  Disktop-dashboardShowLogIN"><i class="fa-solid fa-gauge"></i></a>
+                    <a href="#" id="mobileLOgIn"> <button>log in</button></a>
+                    <a href="#" class="mobile-logOut"> <button>logOut</button></a>
+                </div>
+             </div>
+           
+         <a href="#" class="humber" id="humber">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+         </a>
+         
+         
+        </div>
+    </div>
+  
+<!-- authoform -->
+ <main>
+<div class="autho-model">
+    <div class="autho-container">
+        <h3 id="formTitle">Sign in</h3>
+        <form action="#" id="autho-form">
+            <input type="text" name="firstName" id="firstName" style="display: none;" placeholder="first name">
+            <input type="text" name="LastName" id="LastName" style="display: none;" placeholder=" last name">
+            <input type="email" name="email" id="email" placeholder="example@gmail.com" required >
+            <input type="number" name="number" id="number" placeholder="+25261xxxxx" style="display: none;">
+            <input type="password" name="password" id="password" placeholder="enter password">
+            <input type="password" name="comform-password" id="comform-password" placeholder="comform-password" style="display: none;">
+            <button type="submit" class="btn" id="authButton">Sign In</button>
+        </form>
+
+            <p id="authSwitch">
+                i don't have account? <a href="#" id="switchForm">Register now</a>
+              </p>
+
+    </div>
+</div>
+
+ </main>
+
+
+<!-- footer -->
+<section class="footer-container">
+    <div class="footer">
+        <div class="footerlogo">
+            <img src="../images/cade logo footer.png" alt="foter logo">
+        </div>
+        <div class="footer-work-hours">
+          <h4>work Hours</h4>
+          <p>Saturday-Thursday,</p>
+          <span>07:00AM - 09:00PM</span>
+        </div>
+        <div class="contacts">
+            <h4>contactUs</h4>
+           <div class="whatsApp">
+            <i class="fa-brands fa-whatsapp"></i>
+         <span>   2526167773732</span>
+         <br>
+         <i class="fa-regular fa-envelope"></i>
+         <span>   cadeinfo@gmail.com</span>
+           </div>
+
+        </div>
+        <div class="newalater">
+            <h4>newslater</h4>
+           <div class="newslaterflex">
+            <input type="email" name="" class="email" placeholder="write your newalater">
+            <button>subscribe with us</button>
+           </div>
+           </div>
+
+        </div>
+        <p class="copy-rigth">© 2025 cade car repair. All rights reserved.</p>
+    </div>
+</section>
+
+<!-- menu -->
+<script src="../js/menus.js"></script>
+<!-- main js -->
+
+<script src="../js/main.js"></script>
+
+
+</body>
+</html>

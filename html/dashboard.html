@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="../css/dash.css">
+
+</head>
+<body>
+
+
+    
+<!-- dashboard -->
+   <main>
+    <div class="dash-container">
+        <!-- left side -->
+      <aside>
+        <div class="side-bar">
+            <div class="side-bar-top">
+             <div class="logo">
+                 <img src="../images/cade logo footer.png" alt="dash-log">
+             </div>
+             <div class="side-icon">
+                 <button id="closeSidebar" class="sidebar-toggle">&times;</button>
+             </div>
+            </div>
+     
+     <div class="side-bar-menu">
+         <h3>menu</h3>
+       <nav>
+        <ul class="side-bar-links">
+      
+            <li class="dashboard-tab active" >
+                <i class="fa-solid fa-gauge"></i>
+                <a href="#" id="dashboard-tab">Dashboard</a></li>
+            <li>
+                <i class="fa-solid fa-user-plus"></i>
+                <a href="#" id="addCust-tab">Add customer</a></li>
+                
+            <li>
+                <i class="fa-solid fa-user"></i>
+                <a href="#" id="Customer-tab">customer</a></li>
+
+            <!-- <li> 
+                <i class="fa-solid fa-cart-plus"></i>
+                <a href="#">online Booking</a></li> -->
+            <li>
+                <i class="fa-solid fa-wallet"></i>
+                <a href="#" id="cash-tab">cash</a></li>
+        </ul>
+        
+       </nav>
+      <span>
+       
+       <button type="button" class="dash-logOut">
+        <i class="fa-solid fa-right-from-bracket"></i>
+        logOut</button>
+      </span>
+     </div>
+         
+     
+         </div>
+ 
+      </aside>
+
+        <!-- main content -->
+
+<div class="main-content">
+    <div class="header">
+        <button class="open-side-toggle" id="open-side-toggle" type="button"><i class="fa-solid fa-bars-staggered"></i></button>
+   <div class="home-change">
+    <i class="fa-solid fa-house"></i> 
+    <a href="../index.html">
+      Home
+    </a>
+   </div>
+   <div class="search">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <input type="text" name="" id="search">
+   </div>
+   <div class="online-user">
+    <span class="user-icon"> <i class="fa-solid fa-circle-user"></i></span>
+    <p id="user-active"></p>
+   </div>
+    </div>
+
+    <!-- overveiw -->
+<div class=" content overveiw" id="dash-overveiw">
+    <section>
+        <div class="dash-hero">
+            <h2>Dashboard </h2>
+            <div class="hero-container">
+               
+                <div class="service stak-card">
+                    <!-- service -->
+                    <div class="stak-text">
+                        <p id="showService">0</p>
+                        <h3>services</h3>
+                    </div>
+                    <i class="fa-solid fa-cable-car"></i>
+                </div>
+                <!-- customer -->
+                <div class="customer stak-card">
+                   <div class="stak-text">
+                    <p id="showCustomer">0</p>
+                    <h3>customers</h3>
+                   </div>
+                   <i class="fa-solid fa-user"></i>
+               
+                </div>
+    
+                <!-- online booking -->
+                 <!-- <div class="online-booking stak-card">
+                  <div class="stak-text">
+                    <p id="show-online-booking">0</p>
+                    <h3>online booking</h3>
+                  </div>
+                  <i class="fa-solid fa-cart-plus"></i>
+                 </div> -->
+    
+                 <!-- blance -->
+                  <div class="blance stak-card">
+                    <div class="stak-text">
+                        <p id="show-balance">0</p>
+                        <h3>balance</h3>
+                    </div>
+                    <i class="fa-solid fa-wallet"></i>
+                  </div>
+    
+            </div>
+        </div>
+    </section>
+
+<!-- charts js -->
+<section>
+    <div class="chart">
+       <div class="chart-container">
+         <h2>months service</h2>
+         <div>
+             <canvas id="service-chart"></canvas>
+           </div>
+     </div>
+ 
+     <div class="chart-container">
+        <h2>Earning</h2>
+        <div>
+            <canvas id="Earning-chart"></canvas>
+          </div>
+    </div>
+ 
+    
+ 
+    </div>
+ 
+  </section>
+ 
+<!-- recent service -->
+<section class="list-service">
+    <h2>Recent services</h2>
+    <ul id="recenService"></ul>
+  </section>
+
+</div>
+
+
+
+<!-- add customer -->
+
+<div class="content-customer   addcustomer-container" id="addcustomer-container">
+    <h2 id="addcust-title">Add Customer</h2>
+    <div class="add-customer">
+      
+        <form action="#" id="add-customer-form">
+            <div class="form-container">
+          <div class="name">  <label for="#">full Name:</label> <br>
+            <input type="text" placeholder=" enter customer  full name" id="cust-fullName" required> 
+            <p id="resultName"></p>
+        </div>
+<div class="phone"> 
+    <label for="#">phone Number:</label> <br>
+    <input type="number" placeholder=" 252XXX XXX XXX" id="cust-Number" required>
+    <p id="result"></p>
+</div>
+          
+           <div class="address">
+            <label for="#">Address:</label>
+            <br>
+            <input type="text" placeholder=" enter customer Address" id="customer-address" required> 
+           </div>
+       
+           <div class="natnality"> 
+            <label for="#">Nationality:</label>
+            <br>
+            <input type="text" placeholder=" enter  customer Nationality: " required id="cust-Nationality">
+        </div>
+         
+          <!-- <label for="id">ID</label>
+          <input type="text" name="" id="ID"> -->
+       
+         
+
+<div class="service-type">
+    <label for="service">service Type:</label>
+<br>
+<input type="text" placeholder="service Type" required id="service-type">
+<br>
+</div>
+
+<div class="price">
+    <label for="price">price:</label>
+<br>
+<input type="number" placeholder="price" required id="price">
+<p id="resultPrice"></p>
+
+</div>
+
+<div class="date"><label for="date">Date:</label>
+    <br>
+    <input type="date" id="date-service" required >
+</div>
+<div class="descrption">
+    
+<label for="description"> service description</label>
+<br>
+<textarea name="description" id="description-service" placeholder=" write service description" required ></textarea>
+</div>
+<br>
+
+</div>
+
+<div class="form-btn">
+    <button>Add Customer</button>
+</div>
+
+  
+
+
+
+        </form>
+    </div>
+</div>
+
+
+
+
+
+<!-- update custmore -->
+<section>
+   
+<div class="  content-customer    addcustomer-container " id="updatecustomer-container">
+    <h2 id="cust-content-title">Update Customer</h2>
+    <div class="add-customer">
+      
+        <form action="#" id="add-customer-form">
+            <div class="form-container">
+          <div class="name">  <label for="#">full Name:</label> <br>
+            <input type="text" placeholder=" enter customer  full name" id="cust-fullName" required> 
+            <p id="resultName"></p>
+        </div>
+<div class="phone"> 
+    <label for="#">phone Number:</label> <br>
+    <input type="number" placeholder=" 252XXX XXX XXX" id="cust-Number" required>
+    <p id="result"></p>
+</div>
+          
+           <div class="address">
+            <label for="#">Address:</label>
+            <br>
+            <input type="text" placeholder=" enter customer Address" id="customer-address" required> 
+           </div>
+       
+           <div class="natnality"> 
+            <label for="#">Nationality:</label>
+            <br>
+            <input type="text" placeholder=" enter  customer Nationality: " required id="cust-Nationality">
+        </div>
+         
+          <!-- <label for="id">ID</label>
+          <input type="text" name="" id="ID"> -->
+       
+         
+
+<div class="service-type">
+    <label for="service">service Type:</label>
+<br>
+<input type="text" placeholder="service Type" required id="service-type">
+<br>
+</div>
+
+<div class="price">
+    <label for="price">price:</label>
+<br>
+<input type="number" placeholder="price" required id="price">
+<p id="resultPrice"></p>
+
+</div>
+
+<div class="date"><label for="date">Date:</label>
+    <br>
+    <input type="date" id="date-service" required >
+</div>
+<div class="descrption">
+    
+<label for="description"> service description</label>
+<br>
+<textarea name="description" id="description-service" placeholder=" write service description" required ></textarea>
+</div>
+<br>
+
+</div>
+
+<div class="form-btn">
+    <button>Add Customer</button>
+</div>
+
+  
+
+
+
+        </form>
+    </div>
+</div>
+</section>
+
+<!-- customer lists -->
+ <section>
+    <div class="customer-list-container" id="customer-list-container">
+        <h2>customer Lists </h2>
+    </div>
+ </section>
+
+<!-- cash container -->
+ <section>
+    <div class="cash-container" id="cash-container">
+        <h2>cash </h2>
+    </div>
+ </section>
+
+       </div> 
+
+
+      
+</div>
+
+
+   </main>
+
+   <!-- chart js links -->
+   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+   <script src="../js/chart1.js"></script>
+   <script src="../js/chart2.js"></script>
+
+   <!-- dashboard js -->
+   <script src="../js/dashboard.js"></script>
+
+</body>
+</html>

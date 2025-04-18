@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>service</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <script src="../js/main.js" defer></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../css/service.css">
+
+  
+</head>
+<body>
+    <div class="boder-header">
+        <div class="header" id="header">
+            <!-- desktopmenu -->
+            <div class="logo">
+             <img src="../images/cade log2.png" alt="">
+            </div>
+            <div class="menus deskitop-menus">
+                <ul>
+                    <li> <a href="../index.html">home</a></li>
+                    <li> <a href="./about.html">about</a></li>
+                    <li> <a href="#">services</a></li>
+                    <li> <a href="./contactUs.html">contact</a></li>
+                </ul>
+              
+            </div>
+            <div class="btns deskitop-menus">
+                <div class="lights">
+                    
+                    <!-- <i class="fa-solid fa-moon"></i> -->
+                    <i class="fa-solid fa-user"></i>
+                     <span class="usericon"></span>
+                     
+                </div>
+                <a href="./dashboard.html" class="Disktop-dashboardShowLogIN"><i class="fa-solid fa-gauge"></i></a>
+               <a href="./autho.html" id="login"> <button>log in</button></a>
+               <button class="logOut">logOut</button>
+            </div>
+    
+            <!-- mobile mune -->
+             <div class="mobile-menus  ">
+                <div class="menus ">
+                    <ul>
+                        <li> <a href="../index.html">home</a></li>
+                        <li> <a href="./about.html">about</a></li>
+                        <li> <a href="">services</a></li>
+                        <li> <a href="./contactUs.html">contact</a></li>
+                    </ul>
+                  
+                </div>
+                <div class="btns ">
+                    <div class="lights">
+                        <!-- <i class="fa-solid fa-moon"></i> -->
+                        <i class="fa-solid fa-user mobilUserIcon"></i>
+                        <span class="mobile-usericon"></span>
+                    </div>
+                    <a href="./dashboard.html" class="mobile-dashboardShowLogIN  Disktop-dashboardShowLogIN"><i class="fa-solid fa-gauge"></i></a>
+                    <a href="./autho.html" id="mobileLOgIn"> <button>log in</button></a>
+                    <a href="#" class="mobile-logOut"> <button>logOut</button></a>
+                </div>
+             </div>
+           
+         <a href="#" class="humber" id="humber">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+         </a>
+         
+         
+        </div>
+    </div>
+  
+<main>
+   
+
+        
+ <div class="service-container" id="service-container">
+
+
+</div>
+</main>
+
+
+<section>
+    <div class="booking-model-container">
+        <div class="model">
+            <form action="#" id="booking-model-form">
+                <h2>online booking</h2>
+                            <div class="form-model-items">
+                          <div class="name">  <label for="#">full Name:</label> <br>
+                            <input type="text" placeholder=" enter customer  full name" id="cust-fullName" required> 
+                            <p id="resultName"></p>
+                        </div>
+                    <div class="phone"> 
+                    <label for="#">phone Number:</label> <br>
+                    <input type="number" placeholder=" 252XXX XXX XXX" id="cust-Number" required>
+                    <p id="result"></p>
+                    </div>
+                          
+                           <div class="address">
+                            <label for="#">Address:</label>
+                            <br>
+                            <input type="text" placeholder=" enter customer Address" id="customer-address" required> 
+                           </div>
+                       
+                           <div class="natnality"> 
+                            <label for="#">Nationality:</label>
+                            <br>
+                            <input type="text" placeholder=" enter  customer Nationality: " required id="cust-Nationality">
+                        </div>
+                         
+                          <!-- <label for="id">ID</label>
+                          <input type="text" name="" id="ID"> -->
+                       
+                         
+                    
+                    <div class="service-type">
+                    <label for="service">service Type:</label>
+                    <br>
+                  <input type="text" id="serviceSelection" readonly>
+                
+                    </select>
+                    
+                    </div>
+                    
+                    <div class="price">
+                    <label for="price">price:</label>
+                   <input type="number" id="price" readonly>
+                    <br>
+
+                    </div>
+                    
+                    <div class="date"><label for="date">Date:</label>
+                    <br>
+                    <input type="date" id="date-service" required >
+                    </div>
+                    <div class="descrption">
+                    
+                    <label for="description">description</label>
+                    <br>
+                    <textarea name="description" id="description-service" placeholder="write service description..." required ></textarea>
+                    </div>
+                    <br>
+
+                    </div>
+
+                    <div class="form-btn">
+                    <button>confirm</button>
+
+                   
+                    </div>
+                   
+                        </form>  
+                        <button id="closeBookingModel" class="close-model-service-booking">&times;</button>     
+        </div>
+      
+    </div>
+   
+</section>
+
+    <!-- footer -->
+<section class="footer-container">
+    <div class="footer">
+        <div class="footerlogo">
+            <img src="../images/cade logo footer.png" alt="">
+        </div>
+        <div class="footer-work-hours">
+          <h4>work Hours</h4>
+          <p>Saturday-Thursday,</p>
+          <span>07:00AM - 09:00PM</span>
+        </div>
+        <div class="contacts">
+            <h4>contactUs</h4>
+           <div class="whatsApp">
+            <i class="fa-brands fa-whatsapp"></i>
+         <span>   2526167773732</span>
+         <br>
+         <i class="fa-regular fa-envelope"></i>
+         <span>   cadeinfo@gmail.com</span>
+           </div>
+
+        </div>
+        <div class="newalater">
+            <h4>newslater</h4>
+           <div class="newslaterflex">
+            <input type="email" name="" id="email" placeholder="write your newalater">
+            <button>subscribe with us</button>
+           </div>
+           </div>
+
+        </div>
+        <p class="copy-rigth">© 2025 cade car repair. All rights reserved.</p>
+    </div>
+</section>
+
+
+<!-- js menu -->
+ <script src="../js/menus.js"></script>
+ 
+ <!-- sercieDetals js -->
+  <script src="../js/serviceDetails.js"></script>
+
+  <!-- main js -->
+
+  <!-- <script src="../js/main.js"></script> -->
+
+</body>
+</html>
