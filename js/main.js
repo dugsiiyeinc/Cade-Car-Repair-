@@ -171,7 +171,7 @@ bookingModelForm.addEventListener("submit", (event)=>{
     Number: custNumber.value.trim(),
     address: customerAddress.value.trim(),
     national: custNationality.value.trim(),
-    serviceTye: showServiceType.value,
+    serviceType: showServiceType.value,
     price: ShowpriceService.value,
     date: dateService.value,
     description: descriptionService.value.trim()

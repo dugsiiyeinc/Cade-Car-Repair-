@@ -31,7 +31,8 @@ let dateService = document.querySelector("#date-service")
 const ServiceDescription = document.querySelector("#description-service")
 
 
-
+// functions calling
+showCustomerLists()
 
 // calling addCustomerForm
 customerForm.addEventListener("submit", addCustomerForm)
@@ -76,7 +77,7 @@ function addCustomerForm(event){
      const addCustomerData ={
         id: Date.now(),
         name: custFullName.value.trim(),
-        number: custNumber.value.trim(),
+        Number: custNumber.value.trim(),
         address: customerAddress.value.trim(),
         national: custNationality.value.trim(),
         serviceType: serviceType.value.trim(),
@@ -199,22 +200,40 @@ window.location.href = '../html/autho.html'
 dashboardTab.addEventListener("click", ()=>{
   console.log("cliked")
  changeTabs(dashboardTab , mainDashboard)
+
 })
 
 // when cliked addcustomer
 addCustTab.addEventListener("click", ()=>{
-
+  const currentUser = JSON.parse(localStorage.getItem("onlineUser"))
+  if(!currentUser){
+   alert("please log in")
+   window.location.href = '../html/autho.html'
+   return
+  }
   changeTabs(addCustTab, addcustomerContainer)
 })
 
 // when cliked customer tab
 CustomerTab.addEventListener("click", ()=>{
+  const currentUser = JSON.parse(localStorage.getItem("onlineUser"))
+  if(!currentUser){
+   alert("please log in")
+   window.location.href = '../html/autho.html'
+   return
+  }
   changeTabs(CustomerTab, customerListContainer)
 })
 
 // when cliked cash tab
 
 cashTab.addEventListener("click", ()=>{
+  const currentUser = JSON.parse(localStorage.getItem("onlineUser"))
+  if(!currentUser){
+   alert("please log in")
+   window.location.href = '../html/autho.html'
+   return
+  }
   changeTabs(cashTab , cashContainer)
 })
 
@@ -243,6 +262,68 @@ function changeTabs(tab, container) {
       }
   });
 }
+
+
+// show customer lists
+function showCustomerLists(){
+ 
+  
+  const getData = JSON.parse(localStorage.getItem("customers")) || [];
+ const tbody = document.querySelector("#table-body")
+ getData.forEach((customer)=>{
+  // console.log("getd", customer)
+  const currentUser = JSON.parse(localStorage.getItem("onlineUser"))
+  let status = "processing"
+  const row = document.createElement("tr")
+  row.innerHTML = `
+ <td>${currentUser.firstName}</td>
+      <td>${customer.id}</td>
+      <td>${customer.name}</td>
+      <td>${customer.Number}</td>
+      <td>${customer.address}</td>
+      <td>${customer.serviceType}</td>
+      <td>${customer.price}</td>
+      <td>${customer.date}</td>
+      <td  id="status"data-id= "${customer.id}" >${status}</td>
+      <td><button> Edit </button>
+      <button> Delete </button>
+      
+      </td>
+      
+   
+     
+  `;
+
+  row.querySelector("#status").addEventListener("click",(even)=>{
+   
+     let status = "completed"
+    
+     row.innerHTML = `
+     <td>${currentUser.firstName}</td>
+          <td>${customer.id}</td>
+          <td>${customer.name}</td>
+          <td>${customer.Number}</td>
+          <td>${customer.address}</td>
+          <td>${customer.serviceType}</td>
+          <td>${customer.price}</td>
+          <td>${customer.date}</td>
+          <td  id="status"data-id= "${customer.id}" >${status}</td>
+   <td><button> Edit </button>
+      <button> Delete </button>
+      
+      </td>
+      
+       
+         
+      `;
+  })
+
+  tbody.appendChild(row)
+ })
+
+}
+
+
 
 
 

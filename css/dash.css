@@ -399,8 +399,76 @@ transition:  background-color 0.2s ease-in-out;
 }
 /* customer list container */
 .customer-list-container{
-    display: none;
+    padding: 10px;
+    display: block;
 }
+.customer-list-container h2{
+    color: #082b84;
+    padding: 10px;
+}
+
+
+.table-head{
+    width: 100%;
+    background-color: #1557ff;
+}
+
+.table-head  tr {
+width: 100%;
+
+  
+}
+.table-head  tr  td{
+    width: 100%;
+    padding: 10px 20px;
+    text-wrap: wrap;
+} */
+.costomer-table-container{
+    width: 100%;
+    overflow-x: auto;
+  }
+  
+  .customer-table {
+    width: 100%;
+    border-collapse: collapse;
+
+    table-layout: fixed;
+    min-width: 1000px; /* forces scroll on small screens */
+  }
+  
+  .customer-table thead {
+    background-color: #f6f6f6;
+    color: #2b2a2a;
+    text-align: left;
+  }
+  
+  .customer-table td {
+    border: 1px solid #ddd;
+    padding: 5px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    max-width: 150px;
+    white-space: normal;
+  }
+  
+  .customer-table tbody tr:nth-child(even) {
+    background-color:#ddd;
+  }
+  
+  .customer-table tbody tr:hover {
+    background-color: #f1f1f1;
+  }
+  .customer-table tbody{
+    font-size: 12px;
+    font-weight: 500;
+  }
+  
+  .customer-table thead td {
+    font-weight: 600;
+    font-size: 13px;
+    padding: 10px 5px;
+  }
+  
 
 /* cash section */
 

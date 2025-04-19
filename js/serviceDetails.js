@@ -166,7 +166,7 @@ function getServicegModelForm(){
       Number: customerNumber.value.trim(),
       address: custAddress.value.trim(),
       national: customerNationality.value.trim(),
-      serviceTye: DisplayServiceType.value,
+      serviceType: DisplayServiceType.value,
       price: displaypriceService.value,
       date: serviceDate.value,
       description: serviceDescription.value.trim()
