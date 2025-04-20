@@ -1,4 +1,6 @@
 
+
+
 const closeSidebar = document.querySelector("#closeSidebar")
 const openSideToggle = document.querySelector("#open-side-toggle")
 const sideBar = document.querySelector(".side-bar")
@@ -11,11 +13,13 @@ const dashboardTab = document.querySelector("#dashboard-tab")
 const addCustTab = document.querySelector("#addCust-tab")
 const CustomerTab = document.querySelector("#Customer-tab")
 const cashTab = document.querySelector("#cash-tab")
+
 const mainDashboard= document.querySelector("#dash-overveiw")
 const addcustomerContainer = document.querySelector("#addcustomer-container")
 const updatecustomerContainer = document.querySelector("#updatecustomer-container")
 const customerListContainer = document.querySelector("#customer-list-container")
 const cashContainer = document.querySelector("#cash-container")
+
 
 
 
@@ -32,7 +36,7 @@ const ServiceDescription = document.querySelector("#description-service")
 
 
 // functions calling
-showCustomerLists()
+document.addEventListener("DOMContentLoaded", showCustomerLists)
 
 // calling addCustomerForm
 customerForm.addEventListener("submit", addCustomerForm)
@@ -83,7 +87,8 @@ function addCustomerForm(event){
         serviceType: serviceType.value.trim(),
         price: price.value.trim(),
         date: dateService.value.trim(),
-        description: ServiceDescription.value.trim()
+        description: ServiceDescription.value.trim(),
+        status: "processing"
      }
      console.log("addCustomerData..", addCustomerData)
 
@@ -225,6 +230,8 @@ CustomerTab.addEventListener("click", ()=>{
   changeTabs(CustomerTab, customerListContainer)
 })
 
+// when cliked
+
 // when cliked cash tab
 
 cashTab.addEventListener("click", ()=>{
@@ -265,16 +272,20 @@ function changeTabs(tab, container) {
 
 
 // show customer lists
+let editCustomerId = null;
 function showCustomerLists(){
  
   
   const getData = JSON.parse(localStorage.getItem("customers")) || [];
  const tbody = document.querySelector("#table-body")
+ tbody.innerHTML = "";
  getData.forEach((customer)=>{
   // console.log("getd", customer)
   const currentUser = JSON.parse(localStorage.getItem("onlineUser"))
-  let status = "processing"
+  // let status = "processing"
   const row = document.createElement("tr")
+  const statusText = customer.status === "completed" ? "completed" : "processing";
+  const isProcessing = customer.status === "processing";
   row.innerHTML = `
  <td>${currentUser.firstName}</td>
       <td>${customer.id}</td>
@@ -284,44 +295,117 @@ function showCustomerLists(){
       <td>${customer.serviceType}</td>
       <td>${customer.price}</td>
       <td>${customer.date}</td>
-      <td  id="status"data-id= "${customer.id}" >${status}</td>
-      <td><button> Edit </button>
-      <button> Delete </button>
-      
+   <td 
+  class="status-cell ${isProcessing ? 'status-processing' : 'status-completed'}" 
+  data-id="${customer.id}"
+>
+  ${statusText}
+</td>
+      <td>
+        <button class="edit-btn" data-id="${customer.id}">Edit</button>
+        <button class="delete-btn" data-id="${customer.id}">Delete</button>
       </td>
+
       
    
      
   `;
 
-  row.querySelector("#status").addEventListener("click",(even)=>{
-   
-     let status = "completed"
-    
-     row.innerHTML = `
-     <td>${currentUser.firstName}</td>
-          <td>${customer.id}</td>
-          <td>${customer.name}</td>
-          <td>${customer.Number}</td>
-          <td>${customer.address}</td>
-          <td>${customer.serviceType}</td>
-          <td>${customer.price}</td>
-          <td>${customer.date}</td>
-          <td  id="status"data-id= "${customer.id}" >${status}</td>
-   <td><button> Edit </button>
-      <button> Delete </button>
-      
-      </td>
-      
-       
-         
-      `;
+  // Add click event to toggle status
+  row.querySelector(".status-cell").addEventListener("click", (e) => {
+    const id = e.target.getAttribute("data-id");
+ 
+    const updatedCustomers = getData.map(cust => {
+      if (cust.id == id) {
+        cust.status = (cust.status === "completed") ? "processing" : "completed";
+      }
+      return cust;
+    });
+
+    localStorage.setItem("customers", JSON.stringify(updatedCustomers));
+    showCustomerLists(); // re-render the table
+  });
+
+
+
+  //handle edit btn
+  
+  row.querySelector(".edit-btn").addEventListener("click", () => {
+    document.getElementById("updatecustomer-container").style.display = "block";
+    document.getElementById("cust-fullName").value = customer.name;
+    document.getElementById("cust-Number").value = customer.Number;
+    document.getElementById("customer-address").value = customer.address;
+    document.getElementById("cust-Nationality").value = customer.nationality || ""; // Optional
+    document.getElementById("service-type").value = customer.serviceType;
+    document.getElementById("price").value = customer.price;
+    document.getElementById("date-service").value = customer.date;
+    document.getElementById("description-service").value = customer.description || "";
+
+    editCustomerId = customer.id;
+    console.log("editid", editCustomerId)
+
+    const editBtn = document.querySelector(".edit-btn")
+
+  editBtn.addEventListener("click", ()=>{
+    changeTabs(editBtn, updatecustomerContainer)
   })
+  customerListContainer.style.display = "none"
+  });
+  
 
   tbody.appendChild(row)
+
+  
  })
 
 }
+
+
+document.getElementById("updatecustomer-container").addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  const name = document.getElementById("cust-fullName").value;
+  const Number = document.getElementById("cust-Number").value;
+  const address = document.getElementById("customer-address").value;
+  const nationality = document.getElementById("cust-Nationality").value;
+  const serviceType = document.getElementById("service-type").value;
+  const price = document.getElementById("price").value;
+  const date = document.getElementById("date-service").value;
+  const description = document.getElementById("description-service").value;
+
+  let customers = JSON.parse(localStorage.getItem("customers")) || [];
+
+  if (editCustomerId) {
+    // Update existing customer
+    customers = customers.map((cust) => {
+      console.log("exest", cust)
+      if (cust.id == editCustomerId) {
+        return {
+          ...cust,
+          name,
+          Number,
+          address,
+          nationality,
+          serviceType,
+          price,
+          date,
+          description,
+        };
+      }
+      return cust;
+    });
+
+    localStorage.setItem("customers", JSON.stringify(customers));
+    editCustomerId = null;
+
+    // Reset form
+    document.getElementById("add-customer-form").reset();
+    document.getElementById("updatecustomer-container").style.display = "none";
+  showCustomerLists()
+  }
+});
+
+
 
 
 

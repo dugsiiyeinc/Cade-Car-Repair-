@@ -400,7 +400,7 @@ transition:  background-color 0.2s ease-in-out;
 /* customer list container */
 .customer-list-container{
     padding: 10px;
-    display: block;
+    display: none;
 }
 .customer-list-container h2{
     color: #082b84;
@@ -422,10 +422,11 @@ width: 100%;
     width: 100%;
     padding: 10px 20px;
     text-wrap: wrap;
-} */
+} 
 .costomer-table-container{
     width: 100%;
     overflow-x: auto;
+   
   }
   
   .customer-table {
@@ -437,13 +438,13 @@ width: 100%;
   }
   
   .customer-table thead {
-    background-color: #f6f6f6;
-    color: #2b2a2a;
+    background-color:#5a87f9;
+    color: #fff;
     text-align: left;
   }
   
   .customer-table td {
-    border: 1px solid #ddd;
+    border: 1px solid #d3d2d2;
     padding: 5px;
     word-wrap: break-word;
     overflow-wrap: break-word;
@@ -452,13 +453,14 @@ width: 100%;
   }
   
   .customer-table tbody tr:nth-child(even) {
-    background-color:#ddd;
+    background-color:#f1f1f1;
   }
   
   .customer-table tbody tr:hover {
     background-color: #f1f1f1;
   }
-  .customer-table tbody{
+  .customer-table tbody {
+  color: #2b2a2a;
     font-size: 12px;
     font-weight: 500;
   }
@@ -468,6 +470,28 @@ width: 100%;
     font-size: 13px;
     padding: 10px 5px;
   }
+
+
+  .status-processing {
+    width: 100%;
+    color: #1557ff;
+    border: 1px solid #007bff;
+    border-radius: 5px;
+    padding: 5px 10px;
+    text-align: center;
+    cursor: pointer;
+  }
+  
+  .status-completed {
+ 
+    color: #28a745;
+border-bottom: 1px solid #1557ff;
+    border-radius: 5px;
+ padding: 5px;
+    text-align: center;
+    cursor: pointer;
+  }
+  
   
 
 /* cash section */
