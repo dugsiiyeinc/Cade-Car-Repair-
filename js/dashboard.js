@@ -34,9 +34,14 @@ const price = document.querySelector("#price")
 let dateService = document.querySelector("#date-service")
 const ServiceDescription = document.querySelector("#description-service")
 
+let editCustomerId = null;
+
 
 // functions calling
-document.addEventListener("DOMContentLoaded", showCustomerLists)
+window.onload = () => {
+  showCustomerLists();
+};
+
 
 // calling addCustomerForm
 customerForm.addEventListener("submit", addCustomerForm)
@@ -272,7 +277,7 @@ function changeTabs(tab, container) {
 
 
 // show customer lists
-let editCustomerId = null;
+
 function showCustomerLists(){
  
   
@@ -328,31 +333,71 @@ function showCustomerLists(){
 
 
 
-  //handle edit btn
   
-  row.querySelector(".edit-btn").addEventListener("click", () => {
-    document.getElementById("updatecustomer-container").style.display = "block";
-    document.getElementById("cust-fullName").value = customer.name;
-    document.getElementById("cust-Number").value = customer.Number;
-    document.getElementById("customer-address").value = customer.address;
-    document.getElementById("cust-Nationality").value = customer.nationality || ""; // Optional
-    document.getElementById("service-type").value = customer.serviceType;
-    document.getElementById("price").value = customer.price;
-    document.getElementById("date-service").value = customer.date;
-    document.getElementById("description-service").value = customer.description || "";
-
-    editCustomerId = customer.id;
-    console.log("editid", editCustomerId)
-
-    const editBtn = document.querySelector(".edit-btn")
-
-  editBtn.addEventListener("click", ()=>{
-    changeTabs(editBtn, updatecustomerContainer)
-  })
-  customerListContainer.style.display = "none"
-  });
   
+ // Handle edit button click
 
+    // Edit button click
+    // row.querySelector(".edit-btn").addEventListener("click", (e) => {
+    //   const id = e.target.getAttribute("data-id");
+    //   const index = getData.findIndex(cust => cust.id == id);
+    //   if (index !== -1) {
+    //     const updatedName = prompt("Enter new name:", getData[index].name);
+    //     const updatedNumber = prompt("Enter new number:", getData[index].Number);
+    //     const updatedAddress = prompt("Enter new address:", getData[index].address);
+    //     const updatedService = prompt("Enter new service type:", getData[index].serviceType);
+    //     const updatedPrice = prompt("Enter new price:", getData[index].price);
+    //     const updatedDate = prompt("Enter new date:", getData[index].date);
+
+    //     // Update fields if prompt wasn't cancelled
+    //     if (updatedName !== null) getData[index].name = updatedName;
+    //     if (updatedNumber !== null) getData[index].Number = updatedNumber;
+    //     if (updatedAddress !== null) getData[index].address = updatedAddress;
+    //     if (updatedService !== null) getData[index].serviceType = updatedService;
+    //     if (updatedPrice !== null) getData[index].price = updatedPrice;
+    //     if (updatedDate !== null) getData[index].date = updatedDate;
+
+    //     localStorage.setItem("customers", JSON.stringify(getData));
+    //     showCustomerLists();
+    //   }
+    // });
+
+
+    row.querySelector(".edit-btn").addEventListener("click", () => {
+      document.getElementById("updatecustomer-container").style.display = "block";
+      
+     
+  
+   document.querySelector(".updatecustomer-container #cust-fullName").value = customer.name;
+      document.querySelector(".updatecustomer-container #cust-Number").value = customer.Number;
+      document.querySelector(".updatecustomer-container #customer-address").value = customer.address;
+      document.querySelector(".updatecustomer-container #cust-Nationality").value = customer.national ;
+      document.querySelector(".updatecustomer-container #service-type").value = customer.serviceType;
+      document.querySelector(".updatecustomer-container #price").value = customer.price;
+      document.querySelector(" .updatecustomer-container #date-service").value = customer.date;
+      document.querySelector(".updatecustomer-container #description-service").value = customer.description ;
+    
+      editCustomerId = customer.id; // save which customer is being edited
+
+      document.getElementById("customer-list-container").style.display = "none";
+    });
+
+
+    // Handle delete button click
+row.querySelector(".delete-btn").addEventListener("click", (e) => {
+  const idToDelete = e.target.getAttribute("data-id");
+
+  // Filter out the customer with the matching ID
+  const updatedData = getData.filter(customer => customer.id != idToDelete);
+
+  // Save the new list to localStorage
+  localStorage.setItem("customers", JSON.stringify(updatedData));
+
+  // Re-render the table
+  showCustomerLists();
+});
+
+    
   tbody.appendChild(row)
 
   
@@ -361,50 +406,50 @@ function showCustomerLists(){
 }
 
 
-document.getElementById("updatecustomer-container").addEventListener("submit", function (e) {
+
+
+document.querySelector(".update-customer-form").addEventListener("submit", function(e) {
   e.preventDefault();
 
-  const name = document.getElementById("cust-fullName").value;
-  const Number = document.getElementById("cust-Number").value;
-  const address = document.getElementById("customer-address").value;
-  const nationality = document.getElementById("cust-Nationality").value;
-  const serviceType = document.getElementById("service-type").value;
-  const price = document.getElementById("price").value;
-  const date = document.getElementById("date-service").value;
-  const description = document.getElementById("description-service").value;
 
-  let customers = JSON.parse(localStorage.getItem("customers")) || [];
+console.log("upade ")
+  const customers = JSON.parse(localStorage.getItem("customers")) || [];
+
+  const updatedCustomer = {
+    id: editCustomerId || Date.now(), // if new, assign ID
+    name: document.querySelector(".updatecustomer-container #cust-fullName").value,
+    Number: document.querySelector(".updatecustomer-container #cust-Number").value,
+    address: document.querySelector(".updatecustomer-container #customer-address").value,
+    national: document.querySelector(".updatecustomer-container #cust-Nationality").value,
+    serviceType: document.querySelector(".updatecustomer-container #service-type").value,
+    price: document.querySelector(".updatecustomer-container #price").value,
+    date: document.querySelector(".updatecustomer-container #date-service").value,
+    description: document.querySelector(".updatecustomer-container #description-service").value,
+    status: "processing" // keep status or fetch from previous if needed
+  };
+
+ 
+   let updatedList;
 
   if (editCustomerId) {
-    // Update existing customer
-    customers = customers.map((cust) => {
-      console.log("exest", cust)
-      if (cust.id == editCustomerId) {
-        return {
-          ...cust,
-          name,
-          Number,
-          address,
-          nationality,
-          serviceType,
-          price,
-          date,
-          description,
-        };
-      }
-      return cust;
+    // We're in edit mode – replace only the customer with the matching ID
+    updatedList = customers.map(cust => {
+      return cust.id === editCustomerId ? { ...cust, ...updatedCustomer } : cust;
     });
-
-    localStorage.setItem("customers", JSON.stringify(customers));
-    editCustomerId = null;
-
-    // Reset form
-    document.getElementById("add-customer-form").reset();
-    document.getElementById("updatecustomer-container").style.display = "none";
-  showCustomerLists()
+  } else {
+    // Add mode
+    updatedList = [...customers, updatedCustomer];
   }
-});
 
+  localStorage.setItem("customers", JSON.stringify(updatedList));
+
+  // Reset
+  editCustomerId = null;
+  this.reset();
+  document.getElementById("updatecustomer-container").style.display = "none";
+  showCustomerLists(); // Refresh table
+  document.getElementById("customer-list-container").style.display = "block";
+});
 
 
 
