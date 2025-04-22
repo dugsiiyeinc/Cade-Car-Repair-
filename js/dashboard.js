@@ -297,9 +297,11 @@ function showCustomerLists(){
       <td>${customer.name}</td>
       <td>${customer.Number}</td>
       <td>${customer.address}</td>
+      <td>${customer.national}</td>
       <td>${customer.serviceType}</td>
-      <td>${customer.price}</td>
+      <td  class="price-col">${customer.price}</td>
       <td>${customer.date}</td>
+      <td>${customer.description}</td>
    <td 
   class="status-cell ${isProcessing ? 'status-processing' : 'status-completed'}" 
   data-id="${customer.id}"
@@ -307,8 +309,8 @@ function showCustomerLists(){
   ${statusText}
 </td>
       <td>
-        <button class="edit-btn" data-id="${customer.id}">Edit</button>
-        <button class="delete-btn" data-id="${customer.id}">Delete</button>
+        <button class="edit-btn edit" data-id="${customer.id}">Edit</button>
+        <button class="delete-btn delete" data-id="${customer.id}">Delete</button>
       </td>
 
       
