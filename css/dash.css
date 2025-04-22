@@ -435,7 +435,7 @@ width: 100%;
     border-collapse: collapse;
 
     table-layout: fixed;
-    min-width: 115px; /* forces scroll on small screens */
+    min-width: 1080px; /* forces scroll on small screens */
   }
   
   .customer-table thead {
