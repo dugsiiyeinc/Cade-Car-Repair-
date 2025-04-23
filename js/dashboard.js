@@ -302,6 +302,7 @@ function showCustomerLists(){
       <td>${customer.Number}</td>
       <td>${customer.address}</td>
       <td>${customer.national}</td>
+     
       <td>${customer.serviceType}</td>
       <td  class="price-col">${customer.price}</td>
       <td>${customer.date}</td>
@@ -312,10 +313,12 @@ function showCustomerLists(){
 >
   ${statusText}
 </td>
-      <td>
-        <button class="edit-btn edit" data-id="${customer.id}">Edit</button>
-        <button class="delete-btn delete" data-id="${customer.id}">Delete</button>
-      </td>
+    <td>
+    <div class="flex-buttons">
+      <button class="edit-btn edit" data-id="${customer.id}">Edit</button>
+      <button class="delete-btn delete" data-id="${customer.id}">Delete</button>
+    </div>
+  </td>
 
       
    
