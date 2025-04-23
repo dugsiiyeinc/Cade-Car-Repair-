@@ -284,6 +284,8 @@ function showCustomerLists(){
   const getData = JSON.parse(localStorage.getItem("customers")) || [];
  const tbody = document.querySelector("#table-body")
  tbody.innerHTML = "";
+ let totalPrice = 0
+
  getData.forEach((customer)=>{
   // console.log("getd", customer)
   const currentUser = JSON.parse(localStorage.getItem("onlineUser"))
@@ -291,7 +293,9 @@ function showCustomerLists(){
   const row = document.createElement("tr")
   const statusText = customer.status === "completed" ? "completed" : "processing";
   const isProcessing = customer.status === "processing";
+  totalPrice +=  parseFloat(customer.price) || 0;
   row.innerHTML = `
+  
  <td>${currentUser.firstName}</td>
       <td>${customer.id}</td>
       <td>${customer.name}</td>
@@ -404,6 +408,19 @@ row.querySelector(".delete-btn").addEventListener("click", (e) => {
 
   
  })
+
+ console.log("total price", totalPrice)
+
+//  show income price 
+let incomePrice = document.querySelector("#totlAmount")
+let blance = document.querySelector("#balance-amount")
+let expenditureValue = document.querySelector("#expenditure-value")
+if(incomePrice){
+  incomePrice.textContent =   `${totalPrice.toFixed(2)}`
+  blance.textContent = ( totalPrice.toFixed(2) - expenditureValue.innerText );
+}
+
+
 
 }
 
