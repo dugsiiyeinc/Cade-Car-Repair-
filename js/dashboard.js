@@ -20,6 +20,21 @@ const updatecustomerContainer = document.querySelector("#updatecustomer-containe
 const customerListContainer = document.querySelector("#customer-list-container")
 const cashContainer = document.querySelector("#cash-container")
 
+// cash section handaling
+
+let totalAmount = document.getElementById("total-amount");
+let userAmount = document.getElementById("user-amount");
+const checkAmountButton = document.getElementById("check-amount");
+const totalAmountButton = document.getElementById("total-amount-button");
+const productTitle = document.getElementById("product-title");
+const errorMessage = document.getElementById("budget-error");
+const productTitleError = document.getElementById("product-title-error");
+const productCostError = document.getElementById("product-cost-error");
+const amount = document.getElementById("amount");
+// const expenditureValue = document.getElementById("expenditure-value");
+const balanceValue = document.getElementById("balance-amount");
+const list = document.getElementById("list");
+let tempAmount = 0;
 
 
 
@@ -293,7 +308,7 @@ function showCustomerLists(){
   const row = document.createElement("tr")
   const statusText = customer.status === "completed" ? "completed" : "processing";
   const isProcessing = customer.status === "processing";
-  totalPrice +=  parseFloat(customer.price) || 0;
+  // totalPrice +=  parseFloat(customer.price) || 0;
   row.innerHTML = `
   
  <td>${currentUser.firstName}</td>
@@ -415,13 +430,14 @@ row.querySelector(".delete-btn").addEventListener("click", (e) => {
  console.log("total price", totalPrice)
 
 //  show income price 
-let incomePrice = document.querySelector("#totlAmount")
-let blance = document.querySelector("#balance-amount")
-let expenditureValue = document.querySelector("#expenditure-value")
-if(incomePrice){
-  incomePrice.textContent =   `${totalPrice.toFixed(2)}`
-  blance.textContent = ( totalPrice.toFixed(2) - expenditureValue.innerText );
-}
+
+// let incomePrice = document.querySelector("#totlAmount")
+// let blance = document.querySelector("#balance-amount")
+// let expenditureValue = document.querySelector("#expenditure-value")
+// if(incomePrice){
+//   incomePrice.textContent =   `${totalPrice.toFixed(2)}`
+//   blance.textContent = ( totalPrice.toFixed(2) - expenditureValue.innerText );
+// }
 
 
 
@@ -473,7 +489,90 @@ console.log("upade ")
   document.getElementById("customer-list-container").style.display = "block";
 });
 
+// get income 
+const getData = JSON.parse(localStorage.getItem("customers")) || [];
+let totalPrice = 0
+getData.forEach((customer)=>{
+  totalPrice +=  parseFloat(customer.price) || 0;
+})
+let incomePrice = document.querySelector("#totlAmount")
+let blance = document.querySelector("#balance-amount")
+let expenditureValue = document.querySelector("#expenditure-value")
+if(incomePrice){
+  incomePrice.innerHTML =   `${totalPrice.toFixed(2)}`
+  blance.innerText = ( totalPrice.toFixed(2) - expenditureValue.innerText );
+}
 
+//Function To Disable Edit and Delete Button
+const disableButtons = (bool) => {
+  let editButtons = document.getElementsByClassName("edit");
+  Array.from(editButtons).forEach((element) => {
+    element.disabled = bool;
+  });
+};
+//Function To Modify List Elements
+const modifyElement = (element, edit = false) => {
+  let parentDiv = element.parentElement;
+  let currentBalance = blance.innerText;
+  console.log("curent", currentBalance)
+  let currentExpense = expenditureValue.innerText;
+let incomePrice = document.querySelector(".amount").innerText
+  if (edit) {
+    let parentText = parentDiv.querySelector(".product").innerText;
+    productTitle.value = parentText;
+    userAmount.value = incomePrice;
+    disableButtons(true);
+  }
+  balanceValue.innerText = parseInt(currentBalance) + parseInt(incomePrice);
+  expenditureValue.innerText =
+    parseInt(currentExpense) - parseInt(incomePrice);
+  parentDiv.remove();
+};
+//Function To Create List
+const listCreator = (expenseName, expenseValue) => {
+  let sublistContent = document.createElement("div");
+  sublistContent.classList.add("sublist-content", "flex-space");
+  list.appendChild(sublistContent);
+  sublistContent.innerHTML = `<p class="product">${expenseName}</p><p class="amount">${expenseValue}</p>`;
+  let editButton = document.createElement("button");
+  editButton.classList.add("fa-solid", "fa-pen-to-square", "edit");
+  editButton.style.fontSize = "1.2em";
+  editButton.addEventListener("click", () => {
+    modifyElement(editButton, true);
+  });
+  let deleteButton = document.createElement("button");
+  deleteButton.classList.add("fa-solid", "fa-trash-can", "delete");
+  deleteButton.style.fontSize = "1.2em";
+  deleteButton.addEventListener("click", () => {
+    modifyElement(deleteButton);
+  });
+  sublistContent.appendChild(editButton);
+  sublistContent.appendChild(deleteButton);
+  document.getElementById("list").appendChild(sublistContent);
+};
+//Function To Add Expenses
+checkAmountButton.addEventListener("click", () => {
+  //empty checks
+  if (!userAmount.value || !productTitle.value) {
+    productTitleError.classList.remove("hide");
+    return false;
+  }
+  //Enable buttons
+  disableButtons(false);
+  //Expense
+  let expenditure = parseInt(userAmount.value);
+  //Total expense (existing + new)
+  let sum = parseInt(expenditureValue.innerText) + expenditure;
+  expenditureValue.innerText = sum;
+  //Total balance(budget - total expense)
+  const totalBalance =  - sum;
+  blance.innerText = totalBalance;
+  //Create list
+  listCreator(productTitle.value, userAmount.value);
+  //Empty inputs
+  productTitle.value = "";
+  userAmount.value = "";
+});
 
 
 
