@@ -36,6 +36,9 @@ const balanceValue = document.getElementById("balance-amount");
 const list = document.getElementById("list");
 let tempAmount = 0;
 
+let showService = document.querySelector("#showService")
+let showCustomer = document.querySelector("#showCustomer")
+let showBalance = document.querySelector("#show-balance")
 
 
 //form handaling
@@ -299,16 +302,36 @@ function showCustomerLists(){
   const getData = JSON.parse(localStorage.getItem("customers")) || [];
  const tbody = document.querySelector("#table-body")
  tbody.innerHTML = "";
+ let totalServices = 0;
  let totalPrice = 0
+showCustomer.innerHTML = getData.length
 
  getData.forEach((customer)=>{
+  getData.forEach((customer) => {
+    let serviceLength = 0;
+  
+    if (Array.isArray(customer.serviceType)) {
+      serviceLength = customer.serviceType.length;
+    } else if (typeof customer.serviceType === "string") {
+      serviceLength = customer.serviceType.split(",").filter(s => s.trim() !== "").length;
+      console.log("ser", serviceLength)
+    }
+  
+   
+  });
+  
   // console.log("getd", customer)
   const currentUser = JSON.parse(localStorage.getItem("onlineUser"))
   // let status = "processing"
+//  showService.innerHTML = customer.serviceType.length
+ console.log(showService)
   const row = document.createElement("tr")
+
   const statusText = customer.status === "completed" ? "completed" : "processing";
   const isProcessing = customer.status === "processing";
   // totalPrice +=  parseFloat(customer.price) || 0;
+ 
+
   row.innerHTML = `
   
  <td>${currentUser.firstName}</td>
@@ -427,6 +450,7 @@ row.querySelector(".delete-btn").addEventListener("click", (e) => {
   
  })
 
+
  console.log("total price", totalPrice)
 
 //  show income price 
@@ -504,6 +528,7 @@ if(incomePrice && blance && expenditureValue){
   const income = totalPrice;
   incomePrice.innerHTML = income.toFixed(2);
   blance.innerText = (income - expense).toFixed(2);
+ showBalance.innerHTML = blance.innerText
 }
 
 let expenses = JSON.parse(localStorage.getItem("expenses")) || [];
