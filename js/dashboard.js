@@ -508,6 +508,20 @@ if(incomePrice && blance && expenditureValue){
 
 let expenses = JSON.parse(localStorage.getItem("expenses")) || [];
 
+// Render saved expenses on page load
+expenses.forEach(exp => {
+  listCreator(exp.name, exp.value, exp.id, false); // Don't re-save
+});
+
+
+// Optional: Recalculate totals based on saved expenses
+// let totalExpenses = expenses.reduce((acc, curr) => acc + curr.value, 0);
+// expenditureValue.innerText = totalExpenses.toFixed(2);
+
+// let income = parseFloat(incomePrice.innerText) || 0;
+// blance.innerText = (income - totalExpenses).toFixed(2);
+
+
 //Function To Disable Edit and Delete Button
 const disableButtons = (bool) => {
   let editButtons = document.getElementsByClassName("edit");
@@ -561,7 +575,7 @@ const modifyElement = (element, edit = false) => {
 
 
 //Function To Create List
-const listCreator = (expenseName, expenseValue, expenseId = Date.now()) => {
+function listCreator  (expenseName, expenseValue, expenseId = Date.now(), save = true) {
   let sublistContent = document.createElement("div");
   sublistContent.classList.add("sublist-content", "flex-space");
   sublistContent.setAttribute("data-id", expenseId); // 💡 Store the ID in the element
@@ -585,8 +599,11 @@ const listCreator = (expenseName, expenseValue, expenseId = Date.now()) => {
   document.getElementById("list").appendChild(sublistContent);
 
   // Store in localStorage with unique ID
-  expenses.push({ id: expenseId, name: expenseName, value: parseFloat(expenseValue) });
-  localStorage.setItem("expenses", JSON.stringify(expenses));
+  if (save) {
+    expenses.push({ id: expenseId, name: expenseName, value: parseFloat(expenseValue) });
+    localStorage.setItem("expenses", JSON.stringify(expenses));
+  }
+
 };
 
 //Function To Add Expenses
