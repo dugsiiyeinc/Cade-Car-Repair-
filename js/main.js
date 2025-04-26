@@ -40,7 +40,7 @@ document.querySelector("#mobileLOgIn").style.display = 'none'
  document.querySelector(".mobile-usericon").textContent = `${currentUser.firstName}`
 
 } else{
-   document.querySelector(".logOut").style.display = 'none'
+  //  document.querySelector(".logOut").style.display = 'none'
    document.querySelector(".mobile-logOut").style.display = 'none'
      document.querySelector("#mobileLOgIn").style.display = 'block'
    document.querySelector(".fa-user").style.display = "none"
