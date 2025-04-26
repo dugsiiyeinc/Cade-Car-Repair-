@@ -549,6 +549,11 @@ border-bottom: 1px solid #1557ff;
   
 
 /* cash section */
+.cash-section h2{
+  color: #082b84;
+  padding: 10px;
+
+}
 
 .cash-container{
     display: none;
