@@ -886,7 +886,7 @@ top: 40%;
   /* footer */
 
   .footer{
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     padding-left: 10px;
     flex-wrap: wrap;
   }
@@ -902,11 +902,21 @@ top: 40%;
 
 @media screen  and (max-width:535px) {
     .footer{
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(1, 1fr);
       }
+      .contacts{
+        margin-left: 40px;
+    }
       .newalater{
         margin-left: 40px;
-        margin-top: 30px;
+        margin-top: 20px;
+      }
+      .footer-work-hours{
+        margin-left: 40px;
+        margin-top: 20px;
+      }
+      .footerlogo{
+        margin-left: 10px;
       }
     
 }
