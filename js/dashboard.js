@@ -302,23 +302,24 @@ function showCustomerLists(){
   const getData = JSON.parse(localStorage.getItem("customers")) || [];
  const tbody = document.querySelector("#table-body")
  tbody.innerHTML = "";
- let totalServices = 0;
+//  let totalServices = 0;
  let totalPrice = 0
 showCustomer.innerHTML = getData.length
 
  getData.forEach((customer)=>{
-  getData.forEach((customer) => {
-    let serviceLength = 0;
+
+  // getData.forEach((customer) => {
+  //   let serviceLength = 0;
   
-    if (Array.isArray(customer.serviceType)) {
-      serviceLength = customer.serviceType.length;
-    } else if (typeof customer.serviceType === "string") {
-      serviceLength = customer.serviceType.split(",").filter(s => s.trim() !== "").length;
-      console.log("ser", serviceLength)
-    }
+  //   if (Array.isArray(customer.serviceType)) {
+  //     serviceLength = customer.serviceType.length;
+  //   } else if (typeof customer.serviceType === "string") {
+  //     serviceLength = customer.serviceType.split(",").filter(s => s.trim() !== "").length;
+  //     console.log("ser", serviceLength)
+  //   }
   
    
-  });
+  // });
   
   // console.log("getd", customer)
   const currentUser = JSON.parse(localStorage.getItem("onlineUser"))
@@ -861,3 +862,46 @@ window.addEventListener("DOMContentLoaded", () => {
     listCreator(exp.name, exp.value, exp.id, false);
   });
 });
+
+
+// 10 last recent customer function
+recentCustmores()
+
+function recentCustmores(){
+ 
+const   getCustomer = JSON.parse(localStorage.getItem("customers"))
+
+const displayRecentCustmers = document.querySelector("#RecentCutomer-tbody")
+  const recentCustmer= getCustomer.slice(-10).reverse()
+  console.log("recentCustomer, " , recentCustmer)
+ 
+  recentCustmer.forEach((cust) =>{
+    const tbody = document.createElement("tr");
+    const statusText = cust.status === "completed" ? "completed" : "processing";
+const isProcessing = cust.status === "processing";
+
+
+ tbody.innerHTML = `
+   <td>${cust.id}</td>
+      <td>${cust.name}</td>
+      <td>${cust.Number}</td>
+      <td>${cust.address}</td>
+      <td>${cust.national}</td>
+      <td>${cust.serviceType}</td>
+      <td  class="price-col">${cust.price}</td>
+      <td>${cust.date}</td>
+   <td 
+  class="status-cell ${isProcessing ? 'status-processing' : 'status-completed'}" 
+  data-id="${cust.id}"
+>
+  ${statusText}
+</td>
+   
+
+ `
+
+ displayRecentCustmers.appendChild(tbody)
+  })
+
+
+}
