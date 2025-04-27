@@ -171,12 +171,22 @@ resultPrice.style.color = 'red'
 
     localStorage.setItem("customers",JSON.stringify(getCustomer)) 
     Swal.fire({
-        title: "confirmed successefuly!",
+        title: "Add Customer successefuly!",
         // text: `Please enter a valid Somali phone number`,
         icon: "success",
         confirmButtonText: "Ok",
         cancelButtonText: "cancel"
-      });
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.location.reload();
+          document.getElementById("customer-list-section").style.display = "block";
+       showCustomerLists()
+       recentCustmores()
+
+
+
+        }
+    });
     custFullName.value = ""
     custNumber.value = ""
     customerAddress.value = ""
@@ -819,6 +829,7 @@ function listCreator(expenseName, expenseValue, expenseId = Date.now(), save = t
     let expenses = JSON.parse(localStorage.getItem("expenses")) || [];
     expenses.push({ id: expenseId, name: expenseName, value: parseFloat(expenseValue) });
     localStorage.setItem("expenses", JSON.stringify(expenses));
+       window.location.reload();
   }
 }
 
