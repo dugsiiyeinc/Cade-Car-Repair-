@@ -23,7 +23,7 @@ body{
 
 .side-bar {
    background-color:#1557ff ;
-  min-height: 100vh;
+  min-height: 101vh;
   width: 160px;
 max-width: 200px;
 /* padding: 5px 10px; */
@@ -68,7 +68,7 @@ max-width: 200px;
 display: flex;
 flex-direction: column;
 position: relative;
-min-height: 100vh;
+min-height: 105vh;
 width: 100%;
 
 
@@ -545,7 +545,15 @@ border-bottom: 1px solid #1557ff;
     background-color: #d32f2f;
   }
   
-  
+  .recentCustomer-container{
+    width: 98%;
+   margin-inline: auto;
+  padding-bottom: 20px;
+  }
+  .recentCustomer-container h2{
+    color: #082b84;
+    padding-bottom: 5px;
+  }
   
 
 /* cash section */
