@@ -347,13 +347,13 @@ margin-top: 40px;
     width: 98%;
     margin: 0 auto;
     border-radius: 5px;
-    
+  
 }
 .form-container{
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 1rem;
-   
+  
 }
 
 #add-customer-form div , label{
@@ -379,7 +379,7 @@ margin-top: 40px;
     margin-top: 10px;
     outline-color: #336af5;
     resize: none;
-    height: 100px;
+    /* height: 100px; */
 }
 
 
@@ -393,6 +393,7 @@ font-size: 16px;
 border: none;
 border-radius: 10px;
 cursor: pointer;
+
 transition:  background-color 0.2s ease-in-out;
 }
 .form-btn button:hover{

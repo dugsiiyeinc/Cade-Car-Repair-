@@ -872,7 +872,7 @@ function recentCustmores(){
 const   getCustomer = JSON.parse(localStorage.getItem("customers"))
 
 const displayRecentCustmers = document.querySelector("#RecentCutomer-tbody")
-  const recentCustmer= getCustomer.slice(-10).reverse()
+  const recentCustmer= getCustomer.slice(-5).reverse()
   console.log("recentCustomer, " , recentCustmer)
  
   recentCustmer.forEach((cust) =>{
