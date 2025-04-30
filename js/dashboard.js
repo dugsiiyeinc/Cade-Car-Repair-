@@ -307,17 +307,23 @@ function changeTabs(tab, container) {
 
 // show customer lists
 
-function showCustomerLists(){
+function showCustomerLists(searchKeyword = ""){
  
+  
   
   const getData = JSON.parse(localStorage.getItem("customers")) || [];
  const tbody = document.querySelector("#table-body")
  tbody.innerHTML = "";
+ const filteredData = getData.filter(customer => {
+  const nameMatch = customer.name.toLowerCase().includes(searchKeyword.toLowerCase());
+  const numberMatch = customer.Number.includes(searchKeyword);
+  return nameMatch || numberMatch;
+});
 //  let totalServices = 0;
  let totalPrice = 0
 showCustomer.innerHTML = getData.length
 
- getData.forEach((customer)=>{
+ filteredData.forEach((customer)=>{
 
   // getData.forEach((customer) => {
   //   let serviceLength = 0;
@@ -387,7 +393,7 @@ showCustomer.innerHTML = getData.length
     });
 
     localStorage.setItem("customers", JSON.stringify(updatedCustomers));
-    showCustomerLists(); // re-render the table
+    showCustomerLists(searchKeyword); // re-render the table
   });
 
 
@@ -471,6 +477,11 @@ window.location.reload()
 
 }
 
+document.getElementById("search-input").addEventListener("input", function (event) {
+
+  const searchTerm = this.value;
+  showCustomerLists(searchTerm);
+});
 
 
 
