@@ -54,6 +54,14 @@ transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out ;
     background-color: #1557ff;
     color: #fff;
  }
+ .leftside .service-2.active{
+    background-color: #1557ff;
+    color: #fff;
+ }
+ .leftside .service-3.active{
+    background-color: #1557ff;
+    color: #fff;
+ }
 
  .leftside .service-4.active{
     background-color: #1557ff;

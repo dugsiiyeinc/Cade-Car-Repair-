@@ -829,7 +829,7 @@ function listCreator(expenseName, expenseValue, expenseId = Date.now(), save = t
     let expenses = JSON.parse(localStorage.getItem("expenses")) || [];
     expenses.push({ id: expenseId, name: expenseName, value: parseFloat(expenseValue) });
     localStorage.setItem("expenses", JSON.stringify(expenses));
-       window.location.reload();
+      //  window.location.reload();
   }
 }
 

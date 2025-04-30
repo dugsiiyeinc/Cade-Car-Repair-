@@ -268,6 +268,8 @@ service1.addEventListener("click", ()=>{
      document.querySelector(".lists4").style.display = 'none'
      //service
      document.querySelector(".service-4").classList.remove("active")
+     document.querySelector(".service-2").classList.remove("active")
+     document.querySelector(".service-3").classList.remove("active")
      document.querySelector(".service-1").classList.add("active")
   
   
@@ -295,6 +297,12 @@ service2.addEventListener("click", ()=>{
      document.querySelector(".lists2").style.display = 'block'
      document.querySelector(".lists3").style.display = 'none'
      document.querySelector(".lists4").style.display = 'none'
+
+    //  service
+    document.querySelector(".service-4").classList.remove("active")
+    document.querySelector(".service-2").classList.add("active")
+    document.querySelector(".service-3").classList.remove("active")
+    document.querySelector(".service-1").classList.remove("active")
   
 })
 
@@ -320,6 +328,10 @@ service3.addEventListener("click", ()=>{
      document.querySelector(".lists4").style.display = 'none'
 //service
      document.querySelector(".service-1").classList.remove("active")
+     document.querySelector(".service-4").classList.remove("active")
+     document.querySelector(".service-2").classList.remove("active")
+     document.querySelector(".service-3").classList.add("active")
+     document.querySelector(".service-1").classList.remove("active")
   
 })
 
@@ -343,8 +355,10 @@ service4.addEventListener("click", ()=>{
      document.querySelector(".lists3").style.display = 'none'
      document.querySelector(".lists4").style.display = 'block'
 //service
-     document.querySelector(".service-1").classList.remove("active")
-     document.querySelector(".service-4").classList.add("active")
+document.querySelector(".service-4").classList.add("active")
+document.querySelector(".service-2").classList.remove("active")
+document.querySelector(".service-3").classList.remove("active")
+document.querySelector(".service-1").classList.remove("active")
   
 })
 
