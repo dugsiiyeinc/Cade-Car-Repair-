@@ -51,7 +51,6 @@ document.querySelector("#mobileLOgIn").style.display = 'none'
 // desktop lougOut
 const logOut = document.body.querySelector(".logOut")
 logOut.addEventListener("click", ()=>{
-localStorage.removeItem("onlineUser")
 
 Swal.fire({
   title: "Confirm Logout",

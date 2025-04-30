@@ -229,7 +229,7 @@ if(currentUser && currentUser.firstName){
 
 const DashBoardlogOut = document.body.querySelector(".dash-logOut")
 DashBoardlogOut.addEventListener("click", ()=>{
-localStorage.removeItem("onlineUser")
+
 Swal.fire({
   title: "Confirm Logout",
   text: "Are you sure you want to log out?",
