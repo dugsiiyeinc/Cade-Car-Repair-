@@ -861,6 +861,8 @@ window.addEventListener("DOMContentLoaded", () => {
 
   const savedExpense = parseFloat(localStorage.getItem("currentExpense")) || 0;
   expenditureValue.innerText = savedExpense.toFixed(2);
+  const showExpenses = document.querySelector("#show-online-booking")
+  showExpenses.innerText = savedExpense
 
   const balance = totalIncome - savedExpense;
   blance.innerText = balance.toFixed(2);
