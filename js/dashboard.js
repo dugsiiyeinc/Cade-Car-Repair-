@@ -187,6 +187,7 @@ resultPrice.style.color = 'red'
 
         }
     });
+    updateBalance()
     custFullName.value = ""
     custNumber.value = ""
     customerAddress.value = ""
@@ -335,7 +336,7 @@ showCustomer.innerHTML = getData.length
   const currentUser = JSON.parse(localStorage.getItem("onlineUser"))
   // let status = "processing"
 //  showService.innerHTML = customer.serviceType.length
- console.log(showService)
+
   const row = document.createElement("tr")
 
   const statusText = customer.status === "completed" ? "completed" : "processing";
@@ -393,7 +394,7 @@ showCustomer.innerHTML = getData.length
 
   
   
- // Handle edit button click
+
 
     // Edit button click
     // row.querySelector(".edit-btn").addEventListener("click", (e) => {
@@ -450,7 +451,7 @@ row.querySelector(".delete-btn").addEventListener("click", (e) => {
 
   // Save the new list to localStorage
   localStorage.setItem("customers", JSON.stringify(updatedData));
-
+window.location.reload()
   // Re-render the table
   showCustomerLists();
 });
@@ -751,6 +752,7 @@ function updateIncome() {
     totalPrice += parseFloat(customer.price) || 0;
   });
   localStorage.setItem("totalIncome", totalPrice.toFixed(2));
+
   return totalPrice;
 }
 
@@ -760,12 +762,19 @@ let blance = document.querySelector("#balance-amount");
 let expenditureValue = document.querySelector("#expenditure-value");
 
 // Update balance function
+updateBalance()
 function updateBalance() {
   const income = parseFloat(localStorage.getItem("totalIncome")) || 0;
+
+  console.log("incomePrice", income)
   const expensesTotal = parseFloat(localStorage.getItem("currentExpense")) || 0;
   const balance = income - expensesTotal;
 
   incomePrice.innerText = income.toFixed(2);
+ 
+  const showIcomeToDashoard = document.querySelector("#showIcome")
+  showIcomeToDashoard.innerText = income
+  
   expenditureValue.innerText = expensesTotal.toFixed(2);
   blance.innerText = balance.toFixed(2);
 
@@ -873,7 +882,10 @@ window.addEventListener("DOMContentLoaded", () => {
   const storedExpenses = JSON.parse(localStorage.getItem("expenses")) || [];
   storedExpenses.forEach(exp => {
     listCreator(exp.name, exp.value, exp.id, false);
+
+
   });
+  updateBalance()
 });
 
 
