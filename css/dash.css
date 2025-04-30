@@ -409,6 +409,26 @@ transition:  background-color 0.2s ease-in-out;
     color: #082b84;
     padding: 10px;
 }
+.searchiconDiv {
+  position: relative;
+  padding: 10px;
+}
+  #search-input{
+
+  width: 100%;
+  padding: 7px;
+  border-radius: 5px;
+  border: 1px solid #749bfc;
+  margin-top: 10px;
+  outline-color: #336af5;
+}
+.searchiconDiv i{
+  position: absolute;
+  right: 20px;
+  color: #082b84;
+height: 100%;
+top: 27px;
+}
 
 
 .table-head{
