@@ -53,7 +53,40 @@ const logOut = document.body.querySelector(".logOut")
 logOut.addEventListener("click", ()=>{
 localStorage.removeItem("onlineUser")
 
-window.location.href = '../html/autho.html'
+Swal.fire({
+  title: "Confirm Logout",
+  text: "Are you sure you want to log out?",
+  icon: "warning",
+  confirmButtonColor: "#4880ff",
+  cancelButtonColor: "#C13739",
+  showCancelButton: true,
+  confirmButtonText: "Yes, Logout !",
+  cancelButtonText: "No, cancel!",
+  reverseButtons: true,
+}).then((result) => {
+  if (result.isConfirmed) {
+    localStorage.removeItem("onlineUser");
+
+
+    Swal.fire({
+      title: "You’ve Logged Out!",
+      text: "You’ve successfully logged out. ",
+      icon: "success",
+    }).then(() => {
+  window.location.href = '../html/autho.html'
+    });
+  } else if (
+    /* Read more about handling dismissals below */
+    result.dismiss === Swal.DismissReason.cancel
+  ) {
+    Swal.fire({
+      title: "Logout Canceled",
+      text: "You’re still logged in, ",
+      icon: "error",
+    });
+  }
+});
+
 
 })
 
@@ -61,8 +94,40 @@ window.location.href = '../html/autho.html'
 const  mobileLogOut = document.querySelector(".mobile-logOut")
 mobileLogOut.addEventListener("click", ()=>{
   console.log("md")
-  localStorage.removeItem("onlineUser")
-  window.location.href = '../html/autho.html'
+  Swal.fire({
+    title: "Confirm Logout",
+    text: "Are you sure you want to log out?",
+    icon: "warning",
+    confirmButtonColor: "#4880ff",
+    cancelButtonColor: "#C13739",
+    showCancelButton: true,
+    confirmButtonText: "Yes, Logout !",
+    cancelButtonText: "No, cancel!",
+    reverseButtons: true,
+  }).then((result) => {
+    if (result.isConfirmed) {
+      localStorage.removeItem("onlineUser");
+  
+  
+      Swal.fire({
+        title: "You’ve Logged Out!",
+        text: "You’ve successfully logged out. ",
+        icon: "success",
+      }).then(() => {
+    window.location.href = '../html/autho.html'
+      });
+    } else if (
+      /* Read more about handling dismissals below */
+      result.dismiss === Swal.DismissReason.cancel
+    ) {
+      Swal.fire({
+        title: "Logout Canceled",
+        text: "You’re still logged in, ",
+        icon: "error",
+      });
+    }
+  });
+  
 })
 
 
