@@ -273,7 +273,7 @@ bookingModelForm.addEventListener("submit", (event)=>{
   });
   return
   }else{
-    // get  old data stored 
+   
    
    Swal.fire({
     title: "booking service",
@@ -287,7 +287,7 @@ bookingModelForm.addEventListener("submit", (event)=>{
     reverseButtons: true,
   }).then((result) => {
     if (result.isConfirmed) {
-    
+     // get  old data stored 
       const getData = JSON.parse(localStorage.getItem("customers")) || [];
       getData.push(bookingData)
         console.log("allData", getData)

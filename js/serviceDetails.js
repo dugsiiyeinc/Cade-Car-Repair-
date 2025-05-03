@@ -205,30 +205,66 @@ function getServicegModelForm(){
 
     }
   
-      // get  old data stored 
-      const getData = JSON.parse(localStorage.getItem("customers")) || [];
-    getData.push(bookingData)
-      console.log("allData", getData)
-     localStorage.setItem("customers", JSON.stringify(getData))
+    //   // get  old data stored 
+    //   const getData = JSON.parse(localStorage.getItem("customers")) || [];
+    // getData.push(bookingData)
+    //   console.log("allData", getData)
+    //  localStorage.setItem("customers", JSON.stringify(getData))
 
     //  show success pop swel
     Swal.fire({
-      title: "confirmed successefuly!",
-      // text: `Please enter a valid Somali phone number`,
-      icon: "success",
-      confirmButtonText: "Ok",
-      cancelButtonText: "cancel"
+      title: "booking service",
+      text: "Are you sure you want to  confirm?",
+    
+      confirmButtonColor: "#4880ff",
+      cancelButtonColor: "#C13739",
+      showCancelButton: true,
+      confirmButtonText: "confirm!",
+      cancelButtonText: "Cancel!",
+      reverseButtons: true,
+    }).then((result) => {
+      if (result.isConfirmed) {
+       // get  old data stored 
+        const getData = JSON.parse(localStorage.getItem("customers")) || [];
+        getData.push(bookingData)
+          console.log("allData", getData)
+         localStorage.setItem("customers", JSON.stringify(getData))
+          // clear inputs
+    custFullName.value = ""
+    custNumber.value = ""
+    customerAddress.value = ""
+    custNationality.value = ""
+    showServiceType.value = ""
+    ShowpriceService.value = ""
+    dateService.value = ""
+    descriptionService.value = ""
+    
+        Swal.fire({
+          title: "confirmed successful!",
+          text: "your data saved ",
+          icon: "success",
+        })
+      } else if (
+        /* Read more about handling dismissals below */
+        result.dismiss === Swal.DismissReason.cancel
+      ) {
+        Swal.fire({
+          title: "comfirmed Canceled",
+          text: "no data saved ",
+          icon: "error",
+        });
+      }
     });
   
 
-     custFullName.value = ""
-     customerNumber.value = ""
-     custAddress.value = ""
-     customerNationality.value = ""
-     displaypriceService.value = ""
-     DisplayServiceType.value = ""
-     serviceDate.value = ""
-     serviceDescription.value = ""
+    //  custFullName.value = ""
+    //  customerNumber.value = ""
+    //  custAddress.value = ""
+    //  customerNationality.value = ""
+    //  displaypriceService.value = ""
+    //  DisplayServiceType.value = ""
+    //  serviceDate.value = ""
+    //  serviceDescription.value = ""
     
     // console.log("bookingData", bookingData)
   })
