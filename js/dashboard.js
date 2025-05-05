@@ -959,6 +959,7 @@ const isProcessing = cust.status === "processing";
       <td>${cust.address}</td>
       <td>${cust.national}</td>
       <td>${cust.serviceType}</td>
+      <td>${cust.from}</td>
       <td  class="price-col">${cust.price}</td>
       <td>${cust.date}</td>
    <td 
