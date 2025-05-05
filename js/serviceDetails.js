@@ -162,7 +162,7 @@ function getServicegModelForm(){
   
     const bookingData = {
       id: Date.now(),
-      name: custFullName.value.trim(),
+      name: CustomerFullName.value.trim(),
       Number: customerNumber.value.trim(),
       address: custAddress.value.trim(),
       national: customerNationality.value.trim(),
@@ -183,7 +183,7 @@ function getServicegModelForm(){
     return;
   }
       // ✅ Name validation
-    if (!isValidName(custFullName.value.trim())) {
+    if (!isValidName(CustomerFullName.value.trim())) {
       Swal.fire({
         title: "Invalid Name",
         text: "Please enter a valid name (letters only)",
@@ -194,7 +194,7 @@ function getServicegModelForm(){
       return;
     }   
    
-    if(custFullName.value.trim( ) === "" || customerNumber.value.trim() === "" || custAddress.value.trim() === "" || displaypriceService.value.trim() === "" || DisplayServiceType.value.trim() === "" || serviceDate.value.trim() === "" || customerNationality.value.trim( ) === "" || serviceDescription.value.trim() === ""){
+    if(CustomerFullName.value.trim( ) === "" || customerNumber.value.trim() === "" || custAddress.value.trim() === "" || displaypriceService.value.trim() === "" || DisplayServiceType.value.trim() === "" || serviceDate.value.trim() === "" || customerNationality.value.trim( ) === "" || serviceDescription.value.trim() === ""){
       Swal.fire({
         title: "Error!",
         text: `please fill all Inputs`,
