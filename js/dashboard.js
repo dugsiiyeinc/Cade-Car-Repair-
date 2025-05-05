@@ -332,17 +332,7 @@ function showCustomerLists(searchKeyword = "") {
   showCustomer.innerHTML = getData.length;
 
   filteredData.forEach((customer) => {
-    // getData.forEach((customer) => {
-    //   let serviceLength = 0;
-
-    //   if (Array.isArray(customer.serviceType)) {
-    //     serviceLength = customer.serviceType.length;
-    //   } else if (typeof customer.serviceType === "string") {
-    //     serviceLength = customer.serviceType.split(",").filter(s => s.trim() !== "").length;
-    //     console.log("ser", serviceLength)
-    //   }
-
-    // });
+  
 
     // console.log("getd", customer)
     const currentUser = JSON.parse(localStorage.getItem("onlineUser"));
