@@ -1,24 +1,25 @@
-
-
-
-const closeSidebar = document.querySelector("#closeSidebar")
-const openSideToggle = document.querySelector("#open-side-toggle")
-const sideBar = document.querySelector(".side-bar")
-const userActive = document.querySelector("#user-active")
-const userIcon = document.querySelector(".user-icon")
+const closeSidebar = document.querySelector("#closeSidebar");
+const openSideToggle = document.querySelector("#open-side-toggle");
+const sideBar = document.querySelector(".side-bar");
+const userActive = document.querySelector("#user-active");
+const userIcon = document.querySelector(".user-icon");
 const sidebarLinks = document.querySelectorAll(".side-bar-links > *");
 
 // dashboard changes tab handling
-const dashboardTab = document.querySelector("#dashboard-tab")
-const addCustTab = document.querySelector("#addCust-tab")
-const CustomerTab = document.querySelector("#Customer-tab")
-const cashTab = document.querySelector("#cash-tab")
+const dashboardTab = document.querySelector("#dashboard-tab");
+const addCustTab = document.querySelector("#addCust-tab");
+const CustomerTab = document.querySelector("#Customer-tab");
+const cashTab = document.querySelector("#cash-tab");
 
-const mainDashboard= document.querySelector("#dash-overveiw")
-const addcustomerContainer = document.querySelector("#addcustomer-container")
-const updatecustomerContainer = document.querySelector("#updatecustomer-container")
-const customerListContainer = document.querySelector("#customer-list-container")
-const cashContainer = document.querySelector("#cash-container")
+const mainDashboard = document.querySelector("#dash-overveiw");
+const addcustomerContainer = document.querySelector("#addcustomer-container");
+const updatecustomerContainer = document.querySelector(
+  "#updatecustomer-container"
+);
+const customerListContainer = document.querySelector(
+  "#customer-list-container"
+);
+const cashContainer = document.querySelector("#cash-container");
 
 // cash section handaling
 
@@ -36,355 +37,330 @@ const balanceValue = document.getElementById("balance-amount");
 const list = document.getElementById("list");
 let tempAmount = 0;
 
-let showService = document.querySelector("#showService")
-let showCustomer = document.querySelector("#showCustomer")
-let showBalance = document.querySelector("#show-balance")
-
+let showService = document.querySelector("#showService");
+let showCustomer = document.querySelector("#showCustomer");
+let showBalance = document.querySelector("#show-balance");
 
 //form handaling
-const customerForm = document.querySelector("#add-customer-form")
-const custFullName = document.querySelector("#cust-fullName")
-const custNumber = document.querySelector("#cust-Number")
-const customerAddress = document.querySelector("#customer-address")
-const custNationality = document.querySelector("#cust-Nationality")
-const serviceType = document.querySelector("#service-type")
-const price = document.querySelector("#price")
-let dateService = document.querySelector("#date-service")
-const ServiceDescription = document.querySelector("#description-service")
+const customerForm = document.querySelector("#add-customer-form");
+const custFullName = document.querySelector("#cust-fullName");
+const custNumber = document.querySelector("#cust-Number");
+const customerAddress = document.querySelector("#customer-address");
+const custNationality = document.querySelector("#cust-Nationality");
+const serviceType = document.querySelector("#service-type");
+const price = document.querySelector("#price");
+let dateService = document.querySelector("#date-service");
+const ServiceDescription = document.querySelector("#description-service");
 
 let editCustomerId = null;
-
 
 // functions calling
 window.onload = () => {
   showCustomerLists();
 };
 
-
 // calling addCustomerForm
-customerForm.addEventListener("submit", addCustomerForm)
-
+customerForm.addEventListener("submit", addCustomerForm);
 
 // openSideToggle functina
 
-openSideToggle.addEventListener("click", ()=>{
- sideBar.classList.add("active")
-})
+openSideToggle.addEventListener("click", () => {
+  sideBar.classList.add("active");
+});
 
 // close-side-bar functionalty
-closeSidebar.addEventListener("click", ()=>{
-    sideBar.classList.remove("active")
-})
+closeSidebar.addEventListener("click", () => {
+  sideBar.classList.remove("active");
+});
 
 // user Show
-userIcon.addEventListener("click", ()=>{
-    userActive.classList.toggle("active")
-})
+userIcon.addEventListener("click", () => {
+  userActive.classList.toggle("active");
+});
 
 // sidebar links
-sidebarLinks.forEach(link => {
-    link.addEventListener("click", () => {
-        sidebarLinks.forEach(link => link.classList.remove("active"));
-        link.classList.add("active");
-    })
-})
+sidebarLinks.forEach((link) => {
+  link.addEventListener("click", () => {
+    sidebarLinks.forEach((link) => link.classList.remove("active"));
+    link.classList.add("active");
+  });
+});
 
+// create add customer data
 
-// create add customer data 
+function addCustomerForm(event) {
+  event.preventDefault();
 
-function addCustomerForm(event){
-   
-       event.preventDefault()
+  //    date formating
+  //      const now =new Date();
+  // const formattedDate = `${now.getFullYear()}-${(now.getMonth() + 1).toString().padStart(2, '0')}-${now.getDate().toString().padStart(2, '0')} ${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}:${now.getSeconds().toString().padStart(2, '0')}`;
+  // console.log(formatted); // Example: "2025-03-28 14:45:30"
 
-    //    date formating
-//      const now =new Date();
-// const formattedDate = `${now.getFullYear()}-${(now.getMonth() + 1).toString().padStart(2, '0')}-${now.getDate().toString().padStart(2, '0')} ${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}:${now.getSeconds().toString().padStart(2, '0')}`;
-// console.log(formatted); // Example: "2025-03-28 14:45:30"
+  const addCustomerData = {
+    id: Date.now(),
+    name: custFullName.value.trim(),
+    Number: custNumber.value.trim(),
+    address: customerAddress.value.trim(),
+    national: custNationality.value.trim(),
+    serviceType: serviceType.value.trim(),
+    price: price.value.trim(),
+    date: dateService.value.trim(),
+    description: ServiceDescription.value.trim(),
+    status: "processing",
+    from: "manual",
+  };
+  console.log("addCustomerData..", addCustomerData);
 
-     const addCustomerData ={
-        id: Date.now(),
-        name: custFullName.value.trim(),
-        Number: custNumber.value.trim(),
-        address: customerAddress.value.trim(),
-        national: custNationality.value.trim(),
-        serviceType: serviceType.value.trim(),
-        price: price.value.trim(),
-        date: dateService.value.trim(),
-        description: ServiceDescription.value.trim(),
-        status: "processing",
-        from: "manual"
-     }
-     console.log("addCustomerData..", addCustomerData)
+  //   validate price
+  if (price.value.trim() < 0) {
+    const resultPrice = document.getElementById("resultPrice");
 
-//   validate price
-if(price.value.trim() <0){
-    const resultPrice = document.getElementById('resultPrice')
+    resultPrice.innerHTML = "invalid price";
+    resultPrice.style.color = "red";
+    return;
+  } else {
+    //     resultPrice.innerHTML = ''
+    // resultPrice.style.color = ''
+  }
 
-resultPrice.innerHTML = 'invalid price'
-resultPrice.style.color = 'red'
-    return
-}else{
-//     resultPrice.innerHTML = ''
-// resultPrice.style.color = ''
-}
-
-
-
-
-
- // validate Somali number
- if (!isValidSomaliNumber(custNumber.value.trim())) {
+  // validate Somali number
+  if (!isValidSomaliNumber(custNumber.value.trim())) {
     Swal.fire({
       title: "Invalid Number!",
       text: `Please enter a valid Somali phone number`,
       icon: "error",
-      confirmButtonText: "Ok"
+      confirmButtonText: "Ok",
     });
     return;
   }
 
-
-   //  Name validation
-   if (!isValidName(custFullName.value.trim())) {
+  //  Name validation
+  if (!isValidName(custFullName.value.trim())) {
     Swal.fire({
       title: "Invalid Name",
       text: "Please enter a valid name (letters only)",
       icon: "warning",
       confirmButtonText: "OK",
     });
- 
+
     return;
-  }  
+  }
 
-
-
-     saveTolocalStorage(addCustomerData)
-
+  saveTolocalStorage(addCustomerData);
 }
 
 //save tolocalstorage
- function saveTolocalStorage(addCustomerData){
-    const getCustomer  = getCustomerDataFromLocalStorage()
-    console.log(" Before getCusPush", getCustomer)
+function saveTolocalStorage(addCustomerData) {
+  const getCustomer = getCustomerDataFromLocalStorage();
+  console.log(" Before getCusPush", getCustomer);
 
-    getCustomer.push(addCustomerData)
-    console.log("after getCusPush", getCustomer)
+  getCustomer.push(addCustomerData);
+  console.log("after getCusPush", getCustomer);
 
-    localStorage.setItem("customers",JSON.stringify(getCustomer)) 
-    Swal.fire({
-        title: "Add Customer successefuly!",
-        // text: `Please enter a valid Somali phone number`,
-        icon: "success",
-        confirmButtonText: "Ok",
-        cancelButtonText: "cancel"
-      }).then((result) => {
-        if (result.isConfirmed) {
-          window.location.reload();
-          document.getElementById("customer-list-section").style.display = "block";
-       showCustomerLists()
-       recentCustmores()
-
-
-
-        }
-    });
-    updateBalance()
-    custFullName.value = ""
-    custNumber.value = ""
-    customerAddress.value = ""
-    custNationality.value = ""
-    serviceType.value = ""
-    price.value = ""
-    dateService.value = ""
-    ServiceDescription.value = ""
- }
+  localStorage.setItem("customers", JSON.stringify(getCustomer));
+  Swal.fire({
+    title: "Add Customer successefuly!",
+    // text: `Please enter a valid Somali phone number`,
+    icon: "success",
+    confirmButtonText: "Ok",
+    cancelButtonText: "cancel",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      window.location.reload();
+      document.getElementById("customer-list-section").style.display = "block";
+      showCustomerLists();
+      recentCustmores();
+    }
+  });
+  updateBalance();
+  custFullName.value = "";
+  custNumber.value = "";
+  customerAddress.value = "";
+  custNationality.value = "";
+  serviceType.value = "";
+  price.value = "";
+  dateService.value = "";
+  ServiceDescription.value = "";
+}
 
 // get data fromlocalstoraeg
 
-function getCustomerDataFromLocalStorage(){
-    const getCustomer = JSON.parse(localStorage.getItem("customers")) || []
+function getCustomerDataFromLocalStorage() {
+  const getCustomer = JSON.parse(localStorage.getItem("customers")) || [];
 
-    return getCustomer
+  return getCustomer;
 }
 
 // valid number
 function isValidSomaliNumber(number) {
-    const regex = /^(?:252|0)?(61|62|63|64|65|66|67|68|69|90)\d{7}$/;
-    return regex.test(number);
-  }
+  const regex = /^(?:252|0)?(61|62|63|64|65|66|67|68|69|90)\d{7}$/;
+  return regex.test(number);
+}
 
 // valid name
 function isValidName(name) {
-    const regex = /^[a-zA-Z\s'-]{4,}$/;
-    return regex.test(name);
-  }
-
-
-  //  user login in allow to make service
-const currentUser = JSON.parse(localStorage.getItem("onlineUser"))
-console.log("cure,", currentUser)
-
-if(currentUser && currentUser.firstName){
-    const userActive = document.querySelector("#user-active").textContent = `${currentUser.firstName}`
+  const regex = /^[a-zA-Z\s'-]{4,}$/;
+  return regex.test(name);
 }
 
-const DashBoardlogOut = document.body.querySelector(".dash-logOut")
-DashBoardlogOut.addEventListener("click", ()=>{
+//  user login in allow to make service
+const currentUser = JSON.parse(localStorage.getItem("onlineUser"));
+console.log("cure,", currentUser);
 
-Swal.fire({
-  title: "Confirm Logout",
-  text: "Are you sure you want to log out?",
-  icon: "warning",
-  confirmButtonColor: "#4880ff",
-  cancelButtonColor: "#C13739",
-  showCancelButton: true,
-  confirmButtonText: "Yes, Logout !",
-  cancelButtonText: "No, cancel!",
-  reverseButtons: true,
-}).then((result) => {
-  if (result.isConfirmed) {
-    localStorage.removeItem("onlineUser");
+if (currentUser && currentUser.firstName) {
+  const userActive = (document.querySelector(
+    "#user-active"
+  ).textContent = `${currentUser.firstName}`);
+}
 
+const DashBoardlogOut = document.body.querySelector(".dash-logOut");
+DashBoardlogOut.addEventListener("click", () => {
+  Swal.fire({
+    title: "Confirm Logout",
+    text: "Are you sure you want to log out?",
+    icon: "warning",
+    confirmButtonColor: "#4880ff",
+    cancelButtonColor: "#C13739",
+    showCancelButton: true,
+    confirmButtonText: "Yes, Logout !",
+    cancelButtonText: "No, cancel!",
+    reverseButtons: true,
+  }).then((result) => {
+    if (result.isConfirmed) {
+      localStorage.removeItem("onlineUser");
 
-    Swal.fire({
-      title: "You’ve Logged Out!",
-      text: "You’ve successfully logged out. ",
-      icon: "success",
-    }).then(() => {
-  window.location.href = '../html/autho.html'
-    });
-  } else if (
-    /* Read more about handling dismissals below */
-    result.dismiss === Swal.DismissReason.cancel
-  ) {
-    Swal.fire({
-      title: "Logout Canceled",
-      text: "You’re still logged in, ",
-      icon: "error",
-    });
-  }
+      Swal.fire({
+        title: "You’ve Logged Out!",
+        text: "You’ve successfully logged out. ",
+        icon: "success",
+      }).then(() => {
+        window.location.href = "../html/autho.html";
+      });
+    } else if (
+      /* Read more about handling dismissals below */
+      result.dismiss === Swal.DismissReason.cancel
+    ) {
+      Swal.fire({
+        title: "Logout Canceled",
+        text: "You’re still logged in, ",
+        icon: "error",
+      });
+    }
+  });
 });
 
-
-
-})
-
 // when click dashboad tab
-dashboardTab.addEventListener("click", ()=>{
-  console.log("cliked")
- changeTabs(dashboardTab , mainDashboard)
-
-})
+dashboardTab.addEventListener("click", () => {
+  console.log("cliked");
+  changeTabs(dashboardTab, mainDashboard);
+});
 
 // when cliked addcustomer
-addCustTab.addEventListener("click", ()=>{
-  const currentUser = JSON.parse(localStorage.getItem("onlineUser"))
-  if(!currentUser){
-   alert("please log in")
-   window.location.href = '../html/autho.html'
-   return
+addCustTab.addEventListener("click", () => {
+  const currentUser = JSON.parse(localStorage.getItem("onlineUser"));
+  if (!currentUser) {
+    alert("please log in");
+    window.location.href = "../html/autho.html";
+    return;
   }
-  changeTabs(addCustTab, addcustomerContainer)
-})
+  changeTabs(addCustTab, addcustomerContainer);
+});
 
 // when cliked customer tab
-CustomerTab.addEventListener("click", ()=>{
-  const currentUser = JSON.parse(localStorage.getItem("onlineUser"))
-  if(!currentUser){
-   alert("please log in")
-   window.location.href = '../html/autho.html'
-   return
+CustomerTab.addEventListener("click", () => {
+  const currentUser = JSON.parse(localStorage.getItem("onlineUser"));
+  if (!currentUser) {
+    alert("please log in");
+    window.location.href = "../html/autho.html";
+    return;
   }
-  changeTabs(CustomerTab, customerListContainer)
-})
+  changeTabs(CustomerTab, customerListContainer);
+});
 
 // when cliked
 
 // when cliked cash tab
 
-cashTab.addEventListener("click", ()=>{
-  const currentUser = JSON.parse(localStorage.getItem("onlineUser"))
-  if(!currentUser){
-   alert("please log in")
-   window.location.href = '../html/autho.html'
-   return
+cashTab.addEventListener("click", () => {
+  const currentUser = JSON.parse(localStorage.getItem("onlineUser"));
+  if (!currentUser) {
+    alert("please log in");
+    window.location.href = "../html/autho.html";
+    return;
   }
-  changeTabs(cashTab , cashContainer)
-})
-
+  changeTabs(cashTab, cashContainer);
+});
 
 // change tabs function
 function changeTabs(tab, container) {
-  const tabs = [dashboardTab, addCustTab, CustomerTab, cashTab ];
-  const containers = [mainDashboard, addcustomerContainer, updatecustomerContainer, customerListContainer, cashContainer];
+  const tabs = [dashboardTab, addCustTab, CustomerTab, cashTab];
+  const containers = [
+    mainDashboard,
+    addcustomerContainer,
+    updatecustomerContainer,
+    customerListContainer,
+    cashContainer,
+  ];
 
-  tabs.forEach(currentTab => {
-
-      if (currentTab === tab) {
-
-          containers.forEach(currentCon => {
-              if (currentCon == container) {
-                  container.style.display = "block";
-                  // headerTitle.textContent = tabTitle
-
-              } else {
-                  currentCon.style.display = "none";
-              }
-
-          })
-      } else {
-          return;
-      }
+  tabs.forEach((currentTab) => {
+    if (currentTab === tab) {
+      containers.forEach((currentCon) => {
+        if (currentCon == container) {
+          container.style.display = "block";
+          // headerTitle.textContent = tabTitle
+        } else {
+          currentCon.style.display = "none";
+        }
+      });
+    } else {
+      return;
+    }
   });
 }
 
-
 // show customer lists
 
-function showCustomerLists(searchKeyword = ""){
- 
-  
-  
+function showCustomerLists(searchKeyword = "") {
   const getData = JSON.parse(localStorage.getItem("customers")) || [];
- const tbody = document.querySelector("#table-body")
- tbody.innerHTML = "";
- const filteredData = getData.filter(customer => {
-  const nameMatch = customer.name.toLowerCase().includes(searchKeyword.toLowerCase());
-  const numberMatch = customer.Number.includes(searchKeyword);
-  return nameMatch || numberMatch;
-});
-//  let totalServices = 0;
- let totalPrice = 0
-showCustomer.innerHTML = getData.length
+  const tbody = document.querySelector("#table-body");
+  tbody.innerHTML = "";
+  const filteredData = getData.filter((customer) => {
+    const nameMatch = customer.name
+      .toLowerCase()
+      .includes(searchKeyword.toLowerCase());
+    const numberMatch = customer.Number.includes(searchKeyword);
+    return nameMatch || numberMatch;
+  });
+  //  let totalServices = 0;
+  let totalPrice = 0;
+  showCustomer.innerHTML = getData.length;
 
- filteredData.forEach((customer)=>{
+  filteredData.forEach((customer) => {
+    // getData.forEach((customer) => {
+    //   let serviceLength = 0;
 
-  // getData.forEach((customer) => {
-  //   let serviceLength = 0;
-  
-  //   if (Array.isArray(customer.serviceType)) {
-  //     serviceLength = customer.serviceType.length;
-  //   } else if (typeof customer.serviceType === "string") {
-  //     serviceLength = customer.serviceType.split(",").filter(s => s.trim() !== "").length;
-  //     console.log("ser", serviceLength)
-  //   }
-  
-   
-  // });
-  
-  // console.log("getd", customer)
-  const currentUser = JSON.parse(localStorage.getItem("onlineUser"))
-  // let status = "processing"
-//  showService.innerHTML = customer.serviceType.length
+    //   if (Array.isArray(customer.serviceType)) {
+    //     serviceLength = customer.serviceType.length;
+    //   } else if (typeof customer.serviceType === "string") {
+    //     serviceLength = customer.serviceType.split(",").filter(s => s.trim() !== "").length;
+    //     console.log("ser", serviceLength)
+    //   }
 
-  const row = document.createElement("tr")
+    // });
 
-  const statusText = customer.status === "completed" ? "completed" : "processing";
-  const isProcessing = customer.status === "processing";
-  // totalPrice +=  parseFloat(customer.price) || 0;
- 
+    // console.log("getd", customer)
+    const currentUser = JSON.parse(localStorage.getItem("onlineUser"));
+    // let status = "processing"
+    //  showService.innerHTML = customer.serviceType.length
 
-  row.innerHTML = `
+    const row = document.createElement("tr");
+
+    const statusText =
+      customer.status === "completed" ? "completed" : "processing";
+    const isProcessing = customer.status === "processing";
+    // totalPrice +=  parseFloat(customer.price) || 0;
+
+    row.innerHTML = `
   
  <td>${currentUser.firstName}</td>
       <td>${customer.id}</td>
@@ -399,7 +375,9 @@ showCustomer.innerHTML = getData.length
       <td>${customer.date}</td>
       <td>${customer.description}</td>
    <td 
-  class="status-cell ${isProcessing ? 'status-processing' : 'status-completed'}" 
+  class="status-cell ${
+    isProcessing ? "status-processing" : "status-completed"
+  }" 
   data-id="${customer.id}"
 >
   ${statusText}
@@ -416,154 +394,137 @@ showCustomer.innerHTML = getData.length
      
   `;
 
-  // Add click event to toggle status
-  row.querySelector(".status-cell").addEventListener("click", (e) => {
-    const id = e.target.getAttribute("data-id");
- 
-    const updatedCustomers = getData.map(cust => {
-      if (cust.id == id) {
-        cust.status = (cust.status === "completed") ? "processing" : "completed";
-      }
-      return cust;
+    // Add click event to toggle status
+    row.querySelector(".status-cell").addEventListener("click", (e) => {
+      const id = e.target.getAttribute("data-id");
+
+      const updatedCustomers = getData.map((cust) => {
+        if (cust.id == id) {
+          cust.status =
+            cust.status === "completed" ? "processing" : "completed";
+        }
+        return cust;
+      });
+
+      localStorage.setItem("customers", JSON.stringify(updatedCustomers));
+      showCustomerLists(searchKeyword); // re-render the table
     });
 
-    localStorage.setItem("customers", JSON.stringify(updatedCustomers));
-    showCustomerLists(searchKeyword); // re-render the table
-  });
-
-
-
-  
-  
-
-
-    // Edit button click
-    // row.querySelector(".edit-btn").addEventListener("click", (e) => {
-    //   const id = e.target.getAttribute("data-id");
-    //   const index = getData.findIndex(cust => cust.id == id);
-    //   if (index !== -1) {
-    //     const updatedName = prompt("Enter new name:", getData[index].name);
-    //     const updatedNumber = prompt("Enter new number:", getData[index].Number);
-    //     const updatedAddress = prompt("Enter new address:", getData[index].address);
-    //     const updatedService = prompt("Enter new service type:", getData[index].serviceType);
-    //     const updatedPrice = prompt("Enter new price:", getData[index].price);
-    //     const updatedDate = prompt("Enter new date:", getData[index].date);
-
-    //     // Update fields if prompt wasn't cancelled
-    //     if (updatedName !== null) getData[index].name = updatedName;
-    //     if (updatedNumber !== null) getData[index].Number = updatedNumber;
-    //     if (updatedAddress !== null) getData[index].address = updatedAddress;
-    //     if (updatedService !== null) getData[index].serviceType = updatedService;
-    //     if (updatedPrice !== null) getData[index].price = updatedPrice;
-    //     if (updatedDate !== null) getData[index].date = updatedDate;
-
-    //     localStorage.setItem("customers", JSON.stringify(getData));
-    //     showCustomerLists();
-    //   }
-    // });
-
-
     row.querySelector(".edit-btn").addEventListener("click", () => {
-      document.getElementById("updatecustomer-container").style.display = "block";
-      
-     
-  
-   document.querySelector(".updatecustomer-container #cust-fullName").value = customer.name;
-      document.querySelector(".updatecustomer-container #cust-Number").value = customer.Number;
-      document.querySelector(".updatecustomer-container #customer-address").value = customer.address;
-      document.querySelector(".updatecustomer-container #cust-Nationality").value = customer.national ;
-      document.querySelector(".updatecustomer-container #service-type").value = customer.serviceType;
-      document.querySelector(".updatecustomer-container #price").value = customer.price;
-      document.querySelector(" .updatecustomer-container #date-service").value = customer.date;
-      document.querySelector(".updatecustomer-container #description-service").value = customer.description ;
-    
+      document.getElementById("updatecustomer-container").style.display =
+        "block";
+
+      document.querySelector(".updatecustomer-container #cust-fullName").value =
+        customer.name;
+      document.querySelector(".updatecustomer-container #cust-Number").value =
+        customer.Number;
+      document.querySelector(
+        ".updatecustomer-container #customer-address"
+      ).value = customer.address;
+      document.querySelector(
+        ".updatecustomer-container #cust-Nationality"
+      ).value = customer.national;
+      document.querySelector(".updatecustomer-container #service-type").value =
+        customer.serviceType;
+      document.querySelector(".updatecustomer-container #price").value =
+        customer.price;
+      document.querySelector(" .updatecustomer-container #date-service").value =
+        customer.date;
+      document.querySelector(
+        ".updatecustomer-container #description-service"
+      ).value = customer.description;
+
       editCustomerId = customer.id; // save which customer is being edited
 
       document.getElementById("customer-list-container").style.display = "none";
     });
 
-
     // Handle delete button click
-row.querySelector(".delete-btn").addEventListener("click", (e) => {
-  const idToDelete = e.target.getAttribute("data-id");
+    row.querySelector(".delete-btn").addEventListener("click", (e) => {
+      const idToDelete = e.target.getAttribute("data-id");
 
-  // Filter out the customer with the matching ID
-  const updatedData = getData.filter(customer => customer.id != idToDelete);
+      // Filter out the customer with the matching ID
+      const updatedData = getData.filter(
+        (customer) => customer.id != idToDelete
+      );
 
-  // Save the new list to localStorage
-  localStorage.setItem("customers", JSON.stringify(updatedData));
-window.location.reload()
-  // Re-render the table
-  showCustomerLists();
-});
+      // Save the new list to localStorage
+      localStorage.setItem("customers", JSON.stringify(updatedData));
+      window.location.reload();
+      // Re-render the table
+      showCustomerLists();
+    });
 
-    
-  tbody.appendChild(row)
+    tbody.appendChild(row);
+  });
 
-  
- })
-
-
- console.log("total price", totalPrice)
-
-
-
-
-
+  console.log("total price", totalPrice);
 }
 
-document.getElementById("search-input").addEventListener("input", function (event) {
+document
+  .getElementById("search-input")
+  .addEventListener("input", function (event) {
+    const searchTerm = this.value;
+    showCustomerLists(searchTerm);
+  });
 
-  const searchTerm = this.value;
-  showCustomerLists(searchTerm);
-});
+document
+  .querySelector(".update-customer-form")
+  .addEventListener("submit", function (e) {
+    e.preventDefault();
 
+    console.log("upade ");
+    const customers = JSON.parse(localStorage.getItem("customers")) || [];
 
+    const updatedCustomer = {
+      id: editCustomerId || Date.now(), // if new, assign ID
+      name: document.querySelector(".updatecustomer-container #cust-fullName")
+        .value,
+      Number: document.querySelector(".updatecustomer-container #cust-Number")
+        .value,
+      address: document.querySelector(
+        ".updatecustomer-container #customer-address"
+      ).value,
+      national: document.querySelector(
+        ".updatecustomer-container #cust-Nationality"
+      ).value,
+      serviceType: document.querySelector(
+        ".updatecustomer-container #service-type"
+      ).value,
+      price: document.querySelector(".updatecustomer-container #price").value,
+      date: document.querySelector(".updatecustomer-container #date-service")
+        .value,
+      description: document.querySelector(
+        ".updatecustomer-container #description-service"
+      ).value,
+      status: "processing", // keep status or fetch from previous if needed
+    };
 
-document.querySelector(".update-customer-form").addEventListener("submit", function(e) {
-  e.preventDefault();
+    let updatedList;
 
+    if (editCustomerId) {
+      // We're in edit mode – replace only the customer with the matching ID
+      updatedList = customers.map((cust) => {
+        return cust.id === editCustomerId
+          ? { ...cust, ...updatedCustomer }
+          : cust;
+      });
+    } else {
+      // Add mode
+      updatedList = [...customers, updatedCustomer];
+    }
 
-console.log("upade ")
-  const customers = JSON.parse(localStorage.getItem("customers")) || [];
+    localStorage.setItem("customers", JSON.stringify(updatedList));
 
-  const updatedCustomer = {
-    id: editCustomerId || Date.now(), // if new, assign ID
-    name: document.querySelector(".updatecustomer-container #cust-fullName").value,
-    Number: document.querySelector(".updatecustomer-container #cust-Number").value,
-    address: document.querySelector(".updatecustomer-container #customer-address").value,
-    national: document.querySelector(".updatecustomer-container #cust-Nationality").value,
-    serviceType: document.querySelector(".updatecustomer-container #service-type").value,
-    price: document.querySelector(".updatecustomer-container #price").value,
-    date: document.querySelector(".updatecustomer-container #date-service").value,
-    description: document.querySelector(".updatecustomer-container #description-service").value,
-    status: "processing" // keep status or fetch from previous if needed
-  };
+    // Reset
+    editCustomerId = null;
+    this.reset();
+    document.getElementById("updatecustomer-container").style.display = "none";
+    showCustomerLists(); // Refresh table
+    document.getElementById("customer-list-container").style.display = "block";
+  });
 
- 
-   let updatedList;
-
-  if (editCustomerId) {
-    // We're in edit mode – replace only the customer with the matching ID
-    updatedList = customers.map(cust => {
-      return cust.id === editCustomerId ? { ...cust, ...updatedCustomer } : cust;
-    });
-  } else {
-    // Add mode
-    updatedList = [...customers, updatedCustomer];
-  }
-
-  localStorage.setItem("customers", JSON.stringify(updatedList));
-
-  // Reset
-  editCustomerId = null;
-  this.reset();
-  document.getElementById("updatecustomer-container").style.display = "none";
-  showCustomerLists(); // Refresh table
-  document.getElementById("customer-list-container").style.display = "block";
-});
-
-// get income 
+// get income
 
 // const getData = JSON.parse(localStorage.getItem("customers")) || [];
 // let totalPrice = 0
@@ -581,13 +542,10 @@ console.log("upade ")
 //   // const savedBalance = JSON.parse(localStorage.getItem("currentBalance")) || "0.00";
 //   // blance.innerText = savedBalance;
 //   // showBalance.innerHTML = blance.innerText
-  
+
 //   localStorage.setItem("currentBalance",JSON.stringify(blance.innerText));
 
-
 // }
-
-
 
 // let expenses = JSON.parse(localStorage.getItem("expenses")) || [];
 
@@ -596,14 +554,12 @@ console.log("upade ")
 // //   listCreator(exp.name, exp.value, exp.id, false); // Don't re-save
 // // });
 
-
 // // Optional: Recalculate totals based on saved expenses
 // // let totalExpenses = expenses.reduce((acc, curr) => acc + curr.value, 0);
 // // expenditureValue.innerText = totalExpenses.toFixed(2);
 
 // // let income = parseFloat(incomePrice.innerText) || 0;
 // // blance.innerText = (income - totalExpenses).toFixed(2);
-
 
 // //Function To Disable Edit and Delete Button
 // const disableButtons = (bool) => {
@@ -638,8 +594,6 @@ console.log("upade ")
 //   let currentBalance = parseFloat(blance.innerText);
 //   let currentExpense = parseFloat(expenditureValue.innerText);
 
-  
-
 //   if (edit) {
 //     productTitle.value = name;
 //     userAmount.value = amount;
@@ -652,7 +606,6 @@ console.log("upade ")
 //   // Update numbers
 //   expenditureValue.innerText = (currentExpense - amount).toFixed(2);
 //   blance.innerText = (currentBalance + amount).toFixed(2);
-
 
 //   // Remove from storage using ID
 //   expenses = expenses.filter(exp => exp.id !== id);
@@ -672,7 +625,6 @@ console.log("upade ")
 // localStorage.setItem("currentExpense",JSON.stringify( newExpense.toFixed(2)));
 // // localStorage.setItem("currentBalance", JSON.stringify(newBalance.toFixed(2)));
 
-
 // // --- Remove expense from localStorage ---
 // expenses = expenses.filter(exp => exp.id !== id);
 // localStorage.setItem("expenses", JSON.stringify(expenses));
@@ -680,14 +632,10 @@ console.log("upade ")
 // // Save updated total to currentExpense
 // // localStorage.setItem("currentExpense", JSON.stringify(newTotal.toFixed(2)));
 
-
-
-
 // // Save updated expenses list
 // localStorage.setItem("expenses", JSON.stringify(expenses));
 
 // };
-
 
 // //Function To Create List
 // function listCreator  (expenseName, expenseValue, expenseId = Date.now(), save = true) {
@@ -758,27 +706,21 @@ console.log("upade ")
 //   let sum = existingExpense + expenditure;
 //   expenditureValue.innerText = sum.toFixed(2);
 //   blance.innerText = (income - sum).toFixed(2);
-  
-
-
- 
-
 
 //   // localStorage.setItem("currentBalance",JSON.stringify(blance.innerText) );
- 
- 
+
 //     localStorage.setItem("currentExpense", JSON.stringify(expenditureValue.innerText))
 //   listCreator(productTitle.value, userAmount.value);
 //   productTitle.value = "";
 //   userAmount.value = "";
-  
+
 // });
 
 // // Load current expense from localStorage on page load
 // window.addEventListener("DOMContentLoaded", () => {
 //   const savedExpense = JSON.parse(localStorage.getItem("currentExpense")) || "0.00";
 //   expenditureValue.innerText = savedExpense;
- 
+
 //   // const savedBalance = JSON.parse(localStorage.getItem("currentBalance")) || "0.00";
 //   // blance.innerText = savedBalance;
 //   // showBalance.innerHTML = blance.innerText
@@ -788,7 +730,6 @@ console.log("upade ")
 // });
 
 // });
-
 
 // Fetch customers and calculate total income
 function updateIncome() {
@@ -808,19 +749,19 @@ let blance = document.querySelector("#balance-amount");
 let expenditureValue = document.querySelector("#expenditure-value");
 
 // Update balance function
-updateBalance()
+updateBalance();
 function updateBalance() {
   const income = parseFloat(localStorage.getItem("totalIncome")) || 0;
 
-  console.log("incomePrice", income)
+  console.log("incomePrice", income);
   const expensesTotal = parseFloat(localStorage.getItem("currentExpense")) || 0;
   const balance = income - expensesTotal;
 
   incomePrice.innerText = income.toFixed(2);
- 
-  const showIcomeToDashoard = document.querySelector("#showIcome")
-  showIcomeToDashoard.innerText = income
-  
+
+  const showIcomeToDashoard = document.querySelector("#showIcome");
+  showIcomeToDashoard.innerText = income;
+
   expenditureValue.innerText = expensesTotal.toFixed(2);
   blance.innerText = balance.toFixed(2);
 
@@ -843,7 +784,7 @@ const modifyElement = (element, edit = false) => {
 
   // Get fresh expenses from localStorage
   let expenses = JSON.parse(localStorage.getItem("expenses")) || [];
-  expenses = expenses.filter(exp => exp.id !== id);
+  expenses = expenses.filter((exp) => exp.id !== id);
 
   // Update totals
   const existingExpense = parseFloat(expenditureValue.innerText) || 0;
@@ -856,7 +797,12 @@ const modifyElement = (element, edit = false) => {
 };
 
 // Create expense item
-function listCreator(expenseName, expenseValue, expenseId = Date.now(), save = true) {
+function listCreator(
+  expenseName,
+  expenseValue,
+  expenseId = Date.now(),
+  save = true
+) {
   let sublistContent = document.createElement("div");
   sublistContent.classList.add("sublist-content", "flex-space");
   sublistContent.setAttribute("data-id", expenseId);
@@ -882,9 +828,13 @@ function listCreator(expenseName, expenseValue, expenseId = Date.now(), save = t
   if (save) {
     // Get latest expenses from localStorage
     let expenses = JSON.parse(localStorage.getItem("expenses")) || [];
-    expenses.push({ id: expenseId, name: expenseName, value: parseFloat(expenseValue) });
+    expenses.push({
+      id: expenseId,
+      name: expenseName,
+      value: parseFloat(expenseValue),
+    });
     localStorage.setItem("expenses", JSON.stringify(expenses));
-      //  window.location.reload();
+    //  window.location.reload();
   }
 }
 
@@ -896,7 +846,8 @@ checkAmountButton.addEventListener("click", () => {
   }
 
   const expenditure = parseFloat(userAmount.value);
-  const existingExpense = parseFloat(localStorage.getItem("currentExpense")) || 0;
+  const existingExpense =
+    parseFloat(localStorage.getItem("currentExpense")) || 0;
   const newExpense = existingExpense + expenditure;
 
   localStorage.setItem("currentExpense", newExpense.toFixed(2));
@@ -916,43 +867,38 @@ window.addEventListener("DOMContentLoaded", () => {
 
   const savedExpense = parseFloat(localStorage.getItem("currentExpense")) || 0;
   expenditureValue.innerText = savedExpense.toFixed(2);
-  const showExpenses = document.querySelector("#show-online-booking")
-  showExpenses.innerText = savedExpense
+  const showExpenses = document.querySelector("#show-online-booking");
+  showExpenses.innerText = savedExpense;
 
   const balance = totalIncome - savedExpense;
   blance.innerText = balance.toFixed(2);
-     showBalance.innerHTML = blance.innerText
+  showBalance.innerHTML = blance.innerText;
   localStorage.setItem("currentBalance", balance.toFixed(2));
 
   // 💥💥 Re-fetch expenses inside DOMContentLoaded!
   const storedExpenses = JSON.parse(localStorage.getItem("expenses")) || [];
-  storedExpenses.forEach(exp => {
+  storedExpenses.forEach((exp) => {
     listCreator(exp.name, exp.value, exp.id, false);
-
-
   });
-  updateBalance()
+  updateBalance();
 });
 
-
 // 10 last recent customer function
-recentCustmores()
+recentCustmores();
 
-function recentCustmores(){
- 
-const   getCustomer = JSON.parse(localStorage.getItem("customers"))
+function recentCustmores() {
+  const getCustomer = JSON.parse(localStorage.getItem("customers"));
 
-const displayRecentCustmers = document.querySelector("#RecentCutomer-tbody")
-  const recentCustmer= getCustomer.slice(-5).reverse()
-  console.log("recentCustomer, " , recentCustmer)
- 
-  recentCustmer.forEach((cust) =>{
+  const displayRecentCustmers = document.querySelector("#RecentCutomer-tbody");
+  const recentCustmer = getCustomer.slice(-5).reverse();
+  console.log("recentCustomer, ", recentCustmer);
+
+  recentCustmer.forEach((cust) => {
     const tbody = document.createElement("tr");
     const statusText = cust.status === "completed" ? "completed" : "processing";
-const isProcessing = cust.status === "processing";
+    const isProcessing = cust.status === "processing";
 
-
- tbody.innerHTML = `
+    tbody.innerHTML = `
    <td>${cust.id}</td>
       <td>${cust.name}</td>
       <td>${cust.Number}</td>
@@ -963,17 +909,17 @@ const isProcessing = cust.status === "processing";
       <td  class="price-col">${cust.price}</td>
       <td>${cust.date}</td>
    <td 
-  class="status-cell ${isProcessing ? 'status-processing' : 'status-completed'}" 
+  class="status-cell ${
+    isProcessing ? "status-processing" : "status-completed"
+  }" 
   data-id="${cust.id}"
 >
   ${statusText}
 </td>
    
 
- `
+ `;
 
- displayRecentCustmers.appendChild(tbody)
-  })
-
-
+    displayRecentCustmers.appendChild(tbody);
+  });
 }
