@@ -238,7 +238,9 @@ bookingModelForm.addEventListener("submit", (event)=>{
     serviceType: showServiceType.value,
     price: ShowpriceService.value,
     date: dateService.value,
-    description: descriptionService.value.trim()
+    description: descriptionService.value.trim(),
+      status: "processing",
+        from: "online"
   }
   
  // validate Somali number

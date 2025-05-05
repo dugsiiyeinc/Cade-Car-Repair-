@@ -169,7 +169,9 @@ function getServicegModelForm(){
       serviceType: DisplayServiceType.value,
       price: displaypriceService.value,
       date: serviceDate.value,
-      description: serviceDescription.value.trim()
+      description: serviceDescription.value.trim(),
+        status: "processing",
+        from: "online"
     }
 
   // validate Somali number

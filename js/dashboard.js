@@ -111,7 +111,8 @@ function addCustomerForm(event){
         price: price.value.trim(),
         date: dateService.value.trim(),
         description: ServiceDescription.value.trim(),
-        status: "processing"
+        status: "processing",
+        from: "manual"
      }
      console.log("addCustomerData..", addCustomerData)
 
@@ -393,6 +394,7 @@ showCustomer.innerHTML = getData.length
       <td>${customer.national}</td>
      
       <td>${customer.serviceType}</td>
+      <td>${customer.from}</td>
       <td  class="price-col">${customer.price}</td>
       <td>${customer.date}</td>
       <td>${customer.description}</td>
