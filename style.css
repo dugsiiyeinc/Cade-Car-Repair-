@@ -337,6 +337,7 @@ background-color: #082b84;
 
 }
 
+
 .serviceGrid{
 /* width: 350px; */
    min-width:250px;
@@ -349,11 +350,25 @@ border-radius: 5px;
    text-align: center;
   
 }
+.serviceGrid:hover{
+    transform: scale(1.01);
+    transform-origin: center center;
+}
+.sericeImage{
+    overflow: hidden;
+    display: inline-block;
+   
+}
 .sericeImage img{
     width: 100%;
+    height: 100%;
    object-fit: cover;
-  
- 
+   transition: transform 0.3s ease;
+
+}
+.sericeImage img:hover{
+    transform: scale(1.1);
+    transform-origin: center center;
 }
 .service-info h3{
     color: #082b84;
