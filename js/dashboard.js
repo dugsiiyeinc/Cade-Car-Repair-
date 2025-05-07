@@ -91,11 +91,7 @@ sidebarLinks.forEach((link) => {
 function addCustomerForm(event) {
   event.preventDefault();
 
-  //    date formating
-  //      const now =new Date();
-  // const formattedDate = `${now.getFullYear()}-${(now.getMonth() + 1).toString().padStart(2, '0')}-${now.getDate().toString().padStart(2, '0')} ${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}:${now.getSeconds().toString().padStart(2, '0')}`;
-  // console.log(formatted); // Example: "2025-03-28 14:45:30"
-
+ 
   const addCustomerData = {
     id: Date.now(),
     name: custFullName.value.trim(),
@@ -336,17 +332,7 @@ function showCustomerLists(searchKeyword = "") {
   showCustomer.innerHTML = getData.length;
 
   filteredData.forEach((customer) => {
-    // getData.forEach((customer) => {
-    //   let serviceLength = 0;
-
-    //   if (Array.isArray(customer.serviceType)) {
-    //     serviceLength = customer.serviceType.length;
-    //   } else if (typeof customer.serviceType === "string") {
-    //     serviceLength = customer.serviceType.split(",").filter(s => s.trim() !== "").length;
-    //     console.log("ser", serviceLength)
-    //   }
-
-    // });
+  
 
     // console.log("getd", customer)
     const currentUser = JSON.parse(localStorage.getItem("onlineUser"));
