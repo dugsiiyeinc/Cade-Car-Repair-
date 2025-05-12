@@ -19,5 +19,15 @@ Intuitive design for easy navigation and customers book services.
 
 -  **Responsive Design** 📱   
    Optimized for various devices, ensuring accessibility on desktops, tablets, and smartphones.
+- 📊 **User-friendly Dashboard**
 
+- **Authentication** 🔐  
+Signup / Login
+- **Admin Panel** 🛠️  
+ management main dashboard and customers issue.
+
+---
+
+## Demo live project 
+![click here ](./images/Screenshot%202025-05-11%20042907.png)
 
