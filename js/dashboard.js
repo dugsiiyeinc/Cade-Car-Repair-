@@ -141,7 +141,18 @@ function addCustomerForm(event) {
 
     return;
   }
+ //validate date  
+ const selectedDate = new Date(dateService.value); // assuming `dateService.value` is in "YYYY-MM-DD"
+const today = new Date();
 
+today.setHours(0, 0, 0, 0);
+selectedDate.setHours(0, 0, 0, 0);
+
+
+if (selectedDate.getTime() !== today.getTime()) {
+  alert(" date must be today .");
+  return
+}   
   saveTolocalStorage(addCustomerData);
 }
 

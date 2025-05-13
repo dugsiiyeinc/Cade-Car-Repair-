@@ -173,6 +173,7 @@ function getServicegModelForm(){
         status: "processing",
         from: "online"
     }
+    
 
   // validate Somali number
   if (!isValidSomaliNumber(customerNumber.value.trim())) {
@@ -194,7 +195,20 @@ function getServicegModelForm(){
       });
    
       return;
-    }   
+    }
+
+    //validate date  
+ const selectedDate = new Date(dateService.value); // assuming `dateService.value` is in "YYYY-MM-DD"
+const today = new Date();
+
+today.setHours(0, 0, 0, 0);
+selectedDate.setHours(0, 0, 0, 0);
+
+
+if (selectedDate.getTime() !== today.getTime()) {
+  alert(" date must be today .");
+  return
+}   
    
     if(CustomerFullName.value.trim( ) === "" || customerNumber.value.trim() === "" || custAddress.value.trim() === "" || displaypriceService.value.trim() === "" || DisplayServiceType.value.trim() === "" || serviceDate.value.trim() === "" || customerNationality.value.trim( ) === "" || serviceDescription.value.trim() === ""){
       Swal.fire({
