@@ -19,20 +19,23 @@ Also facilitate for customers to make online  booking our services easily way us
 
 - **User-Friendly Interface**  🖥️  
 Intuitive design for easy navigation and customers book services.
-
+- 💲**Cash Calculating**   
+[like income, expenses, ] 
 -  **Responsive Design** 📱   
    Optimized for various devices, ensuring accessibility on desktops, tablets, and smartphones.
 - 📊 **Admin dashboard**   
  User-Friendly Interface with charts and customer  management.
 
 - **Authentication** 🔐  
-Signup / Login
+Signup / Login / logOut
+- 🔍 **customer  search functionality**
 
 
 ---
 
 ## 🚀 Demo live project
-🔗 [click here to view the project](https://cade-car-repair.vercel.app/) 
+🔗 [Click Here To View The Project](https://cade-car-repair.vercel.app/)
+
 ![screenshoot image  ](./images/Screenshot%202025-05-11%20042907.png)
 
 ---
@@ -41,9 +44,10 @@ Signup / Login
 - 🌐 **HTML:**  used for structuring of website
 - 🎨**CSS:** used  for styling our system
 - 🧠 **JavaScript:** used for Interactivity and functionality our system
-- 🧩 **fontAwesome:** used for add icons in our system
-- 🔤 **googleFonts:** used adding different fonts in our system
-- 📈 **chart.js:** 
+- 🧩 **fontAwesome:** used for adding icons 
+- 🔤 **googleFonts:** used adding different fonts the project 
+- 📈 **chart.js:** for admin dashboard visualizations
+- 🟨 **Local Storage:** for data saving
 
 ---
 # 📦 Installation
@@ -55,3 +59,4 @@ Signup / Login
    ```
     cd Cade-Car-Repair
 
+---
