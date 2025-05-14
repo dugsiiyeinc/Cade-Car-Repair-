@@ -242,7 +242,18 @@ bookingModelForm.addEventListener("submit", (event)=>{
       status: "processing",
         from: "online"
   }
-  
+   //validate date  
+ const selectedDate = new Date(dateService.value); // assuming `dateService.value` is in "YYYY-MM-DD"
+const today = new Date();
+
+today.setHours(0, 0, 0, 0);
+selectedDate.setHours(0, 0, 0, 0);
+
+
+if (selectedDate.getTime() !== today.getTime()) {
+  alert(" date must be today .");
+  return
+}
  // validate Somali number
  if (!isValidSomaliNumber(custNumber.value.trim())) {
   Swal.fire({
@@ -254,6 +265,19 @@ bookingModelForm.addEventListener("submit", (event)=>{
 
   return;
 }
+  //   validate price
+  if (price.value.trim() < 0) {
+    const resultPrice = document.getElementById("resultPrice");
+
+    resultPrice.innerHTML = "invalid price";
+    resultPrice.style.color = "red";
+    return;
+  } else {
+    //     resultPrice.innerHTML = ''
+    // resultPrice.style.color = ''
+  }
+
+ 
    //  Name validation
    if (!isValidName(custFullName.value.trim())) {
     Swal.fire({
