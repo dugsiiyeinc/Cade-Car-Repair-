@@ -17,11 +17,11 @@ Also facilitate for customers to make online  booking our services easily way us
 
 ## 🌟 Features
 
-- **User-Friendly Interface**  🖥️  
+- 🖥️ **User-Friendly Interface**   
 Intuitive design for easy navigation and customers book services.
-- 💲**Cash Calculating**   
-[like income, expenses, ] 
--  **Responsive Design** 📱   
+- 💲**Cash management**   
+[like income calculating, expenses calculating, nad balance calculating ] 
+- 📱 **Responsive Design**    
    Optimized for various devices, ensuring accessibility on desktops, tablets, and smartphones.
 - 📊 **Admin dashboard**   
  User-Friendly Interface with charts and customer  management.
@@ -41,8 +41,8 @@ Signup / Login / logOut
 ---
 
 ## ⚙️ Tech used 
-- 🌐 **HTML:**  used for structuring of website
-- 🎨**CSS:** used  for styling our system
+- 🌐 **HTML5:** used for structuring of website
+- 🎨**CSS5:** used  for styling our system
 - 🧠 **JavaScript:** used for Interactivity and functionality our system
 - 🧩 **fontAwesome:** used for adding icons 
 - 🔤 **googleFonts:** used adding different fonts the project 
@@ -50,7 +50,10 @@ Signup / Login / logOut
 - 🟨 **Local Storage:** for data saving
 
 ---
-# 📦 Installation
+
+## 🪪 License
+Free to use for personal projects.
+## 📦 Installation
 
 1. **Clone the repository:**
    ```
