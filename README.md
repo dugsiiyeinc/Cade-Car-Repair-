@@ -51,8 +51,19 @@ Signup / Login / logOut
 
 ---
 
+## 📄 Pages 
+1. **Home** [index.html]: Landing page showcasing the company's key features
+2. **About** [about.html]: Information about the company 
+3. **Services** [services.html]: showing  the service of the company 
+4. **Contact** [contact.html]: Contact form, company information, interactive map 
+5. **Dashboard** [dashboard.index]: contains (adding customer , customer list, cash calculating, and charts and other features  ) 
+
+---
+
 ## 🪪 License
 Free to use for personal projects.
+
+---
 ## 📦 Installation
 
 1. **Clone the repository:**
