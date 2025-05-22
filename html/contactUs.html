@@ -5,6 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>contacUs</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <!-- send email  -->
+     <!-- <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+</script>
+<script type="text/javascript">
+   (function(){
+      emailjs.init({
+        publicKey: "hEud2DEvHvH9cf1gy",
+      });
+   })();
+</script> -->
 
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="../css/contact.css">
@@ -89,16 +100,16 @@
            </div>
 
     
-           <form action="#" class="contact-form">
+           <form  onsubmit="sendEmail(); return false ;" action="#" class="contact-form"  >
             <div class="info">
                 <div class="name">
                     <label for="name">full name</label> <br>
-                    <input type="text" name="" id="" placeholder="enter your full name">
+                    <input type="text" name="name" id="name" placeholder="enter your full name">
                 </div>
            
             <div class="phone">    
                 <label for="phone">phone number</label>  <br>
-                <input type="number" name="number" id="" placeholder="phone number"></div>
+                <input type="number" name="phone" id="number" placeholder="phone number"></div>
             
            
             
@@ -107,17 +118,17 @@
                <div class="email">
                 <label for="email">email</label>
              <br>
-                <input type="email" placeholder="email12@gmail.com">
+                <input type="email" placeholder="email12@gmail.com" id="email" name="email">
                </div>
            
 
           <div class="message">
             <label for="message">message</label>
              <br>
-            <textarea name="" id="" placeholder="tell us more about your inquiry."></textarea>
+            <textarea name="message" id="message" placeholder="tell us more about your inquiry."></textarea>
           </div>
           
-                     <button>send</button>
+                     <button >send</button>
            </form>
      
 
@@ -167,5 +178,12 @@
 
           <!-- main js -->
            <script src="../js/main.js"></script>
+
+      <!-- send email -->
+       <script src="https://smtpjs.com/v3/smtp.js">
+</script>
+
+            <!-- contan.js -->
+             <script src="../js/contact.js"></script>
 </body>
 </html>
