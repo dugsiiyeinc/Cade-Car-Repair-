@@ -85,8 +85,21 @@
             <input type="text" name="LastName" id="LastName" style="display: none;" placeholder=" last name">
             <input type="email" name="email" id="email" placeholder="example@gmail.com" required >
             <input type="number" name="number" id="number" placeholder="+25261xxxxx" style="display: none;">
+           <div class="passwor-container"> 
             <input type="password" name="password" id="password" placeholder="enter password">
-            <input type="password" name="comform-password" id="comform-password" placeholder="comform-password" style="display: none;">
+            <div class="eye-icons passworShowContainer">
+                <!-- <i class="fa-solid fa-eye-slash showPassword-Eye  showEye"></i> -->
+            <!-- <i class="fa-solid fa-eye showPassword-Eye hideEye" style="display: none ;"></i> -->
+             <img src="../images/hideEye.png" alt="" class="showPassword-Eye" id="togglePassword">
+            </div>
+        </div>
+            <div class="confirm-container">
+                <input type="password" name="comform-password" 
+            id="comform-password" placeholder="comform-password" style="display: none;">
+             <div class="eye-icons eye-confirm-password">
+           <img src="../images/hideEye.png" alt="" class="showPassword-Eye" id="toggleConfirmPassword" style="display: none;">
+            </div>
+            </div>
             <button type="submit" class="btn" id="authButton">Sign In</button>
         </form>
 
