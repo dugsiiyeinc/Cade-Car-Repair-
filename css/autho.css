@@ -55,6 +55,38 @@ body{
     border-radius: 5px;
     outline-color: #95b2fe;
 }
+.passwor-container {
+  position: relative;
+}
+.passwor-container input{
+    width: 100%;
+   
+}
+
+.eye-icons{
+    position: absolute;
+    top: 5px;
+    right: 15px;
+
+}
+/* .hideEye{
+    position: absolute;
+    top: 6px;
+    right: 1px;
+} */
+
+.eye-icons img{
+    width: 25px;
+     top: 5px;
+    right: 15px;
+}
+.confirm-container{
+    position: relative;
+}
+.confirm-container input{
+width: 100%;
+}
+
 
 #authButton{
     padding: 8px;
