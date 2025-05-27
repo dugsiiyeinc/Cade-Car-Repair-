@@ -61,7 +61,7 @@ LastName.style.display= "none"
 number.style.display= "none"
 email.value =""
 password.value = ""
- document.querySelector("#showPassword").style.display = "none"
+ document.querySelector("#toggleConfirmPassword").style.display = "none"
 
  } else{
     formTitle.textContent = "sign Up";
