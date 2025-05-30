@@ -401,7 +401,7 @@ transition:  background-color 0.2s ease-in-out;
 }
 /* customer list container */
 .customer-list-container{
-    padding: 10px 10px;
+    padding: 10px 5px;
    
     display: none;
 }
@@ -432,6 +432,7 @@ top: 27px;
 
 
 .table-head{
+
     width: 100%;
     background-color: #1557ff;
 }
@@ -529,6 +530,17 @@ border-bottom: 1px solid #1557ff;
     text-align: center;
     cursor: pointer;
   }
+  /* from */
+  .from-online {
+  color: #45a049;
+  font-weight: bold;
+}
+
+.from-manual {
+  color: #007bff;
+  font-weight: bold;
+}
+
 
   .edit-btn {
     padding: 6px 5px;

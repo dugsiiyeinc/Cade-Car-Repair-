@@ -367,10 +367,14 @@ function showCustomerLists(searchKeyword = "") {
       <td>${customer.national}</td>
      
       <td>${customer.serviceType}</td>
-      <td>${customer.from}</td>
+      <td <td class="${customer.from === 'online' ? 'from-online' : customer.from === 'manual' ? 'from-manual' : ''}">
+  ${customer.from}
+</td>
+
       <td  class="price-col">${customer.price}</td>
       <td>${customer.date}</td>
       <td>${customer.description}</td>
+
    <td 
   class="status-cell ${
     isProcessing ? "status-processing" : "status-completed"
