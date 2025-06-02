@@ -240,7 +240,8 @@ bookingModelForm.addEventListener("submit", (event)=>{
     date: dateService.value,
     description: descriptionService.value.trim(),
       status: "processing",
-        from: "online"
+        from: "online",
+         createdAt: new Date().toISOString()
   }
    //validate date  
  const selectedDate = new Date(dateService.value); // assuming `dateService.value` is in "YYYY-MM-DD"
