@@ -104,6 +104,7 @@ function addCustomerForm(event) {
     description: ServiceDescription.value.trim(),
     status: "processing",
     from: "manual",
+     createdAt: new Date().toISOString()
   };
   console.log("addCustomerData..", addCustomerData);
 
@@ -189,6 +190,8 @@ function saveTolocalStorage(addCustomerData) {
   dateService.value = "";
   ServiceDescription.value = "";
 }
+
+
 
 // get data fromlocalstoraeg
 
@@ -367,22 +370,22 @@ function showCustomerLists(searchKeyword = "") {
       <td>${customer.national}</td>
      
       <td>${customer.serviceType}</td>
-      <td <td class="${customer.from === 'online' ? 'from-online' : customer.from === 'manual' ? 'from-manual' : ''}">
-  ${customer.from}
+     <td>
+  <span class="${customer.from === 'online' ? 'from-online' : customer.from === 'manual' ? 'from-manual' : ''}">
+    ${customer.from}
+  </span>
 </td>
 
       <td  class="price-col">${customer.price}</td>
       <td>${customer.date}</td>
       <td>${customer.description}</td>
 
-   <td 
-  class="status-cell ${
-    isProcessing ? "status-processing" : "status-completed"
-  }" 
-  data-id="${customer.id}"
->
-  ${statusText}
+   <td class="status-cell" data-id="${customer.id}">
+  <span class="${isProcessing ? "status-processing" : "status-completed"}">
+    ${statusText}
+  </span>
 </td>
+
     <td>
     <div class="flex-buttons">
       <button class="edit-btn edit" data-id="${customer.id}">Edit</button>
@@ -396,20 +399,23 @@ function showCustomerLists(searchKeyword = "") {
   `;
 
     // Add click event to toggle status
-    row.querySelector(".status-cell").addEventListener("click", (e) => {
-      const id = e.target.getAttribute("data-id");
+  row.querySelector(".status-cell").addEventListener("click", (e) => {
+  const td = e.target.closest(".status-cell"); // ensures td is found even if span was clicked
+  const id = td?.getAttribute("data-id");
 
-      const updatedCustomers = getData.map((cust) => {
-        if (cust.id == id) {
-          cust.status =
-            cust.status === "completed" ? "processing" : "completed";
-        }
-        return cust;
-      });
+  if (!id) return;
 
-      localStorage.setItem("customers", JSON.stringify(updatedCustomers));
-      showCustomerLists(searchKeyword); // re-render the table
-    });
+  const updatedCustomers = getData.map((cust) => {
+    if (cust.id == id) {
+      cust.status = cust.status === "completed" ? "processing" : "completed";
+    }
+    return cust;
+  });
+
+  localStorage.setItem("customers", JSON.stringify(updatedCustomers));
+  showCustomerLists(searchKeyword); // re-render the table
+});
+
 
     row.querySelector(".edit-btn").addEventListener("click", () => {
       document.getElementById("updatecustomer-container").style.display =
@@ -714,16 +720,17 @@ function recentCustmores() {
       <td>${cust.address}</td>
       <td>${cust.national}</td>
       <td>${cust.serviceType}</td>
-      <td>${cust.from}</td>
+     <td>
+  <span class="${cust.from === 'online' ? 'from-online' : cust.from === 'manual' ? 'from-manual' : ''}">
+    ${cust.from}
+  </span>
+</td>
       <td  class="price-col">${cust.price}</td>
       <td>${cust.date}</td>
-   <td 
-  class="status-cell ${
-    isProcessing ? "status-processing" : "status-completed"
-  }" 
-  data-id="${cust.id}"
->
-  ${statusText}
+   <td class="status-cell recent" data-id="${cust.id}">
+  <span class="${isProcessing ? "status-processing" : "status-completed"}">
+    ${statusText}
+  </span>
 </td>
    
 
@@ -732,3 +739,9 @@ function recentCustmores() {
     displayRecentCustmers.appendChild(tbody);
   });
 }
+
+
+
+
+
+
