@@ -11,11 +11,30 @@ const authoForm = document.querySelector("#autho-form")
 
 
 
+
+// show password 
+//  let showPasswordIcon = document.querySelector("#hidePassword")
+//  let password = document.querySelector("#password")
+//  showPasswordIcon.addEventListener("click", ()=>{
+//     console.log("clik")
+//     if(password.type == "password"){
+//         password.type = "text"
+        
+//         showPasswordIcon.src = "../images/showEye.jpg"
+        
+//     } else{
+//         password.type = "password"
+//  showPasswordIcon.src = "../images/hideEye.png"
+//     }
+//  })
+
 document.body.addEventListener("click", (e)=>{
 if(e.target.id !== "switchForm") return
     switchFormFunction()
 
 })
+
+  
 
 // create swhitchfrom
 let isSignIn = true
@@ -42,6 +61,7 @@ LastName.style.display= "none"
 number.style.display= "none"
 email.value =""
 password.value = ""
+ document.querySelector("#toggleConfirmPassword").style.display = "none"
 
  } else{
     formTitle.textContent = "sign Up";
@@ -57,6 +77,8 @@ password.value = ""
     password.value = "";
     email.value = "";
     comformPassword.value = "";
+    // show comfirm password
+
  }
  
 }
@@ -117,6 +139,7 @@ if(!isSignIn){
         });
         return
     }
+ 
 }
 
 if(isSignIn){
@@ -248,8 +271,31 @@ switchFormFunction()
 
 
 
-
-
-
 })
+
+
+const togglePasswordIcon = document.querySelector("#togglePassword");
+const passwordInput = document.querySelector("#password");
+
+const toggleConfirmPasswordIcon = document.querySelector("#toggleConfirmPassword");
+const confirmPasswordInput = document.querySelector("#comform-password");
+
+// Show confirm password toggle icon when confirm field is interacted with
+confirmPasswordInput.addEventListener("focus", () => {
+  toggleConfirmPasswordIcon.style.display = "block";
+});
+
+// Toggle main password visibility
+togglePasswordIcon.addEventListener("click", () => {
+  const isPassword = passwordInput.type === "password";
+  passwordInput.type = isPassword ? "text" : "password";
+  togglePasswordIcon.src = isPassword ? "../images/showEye.jpg" : "../images/hideEye.png";
+});
+
+// Toggle confirm password visibility
+toggleConfirmPasswordIcon.addEventListener("click", () => {
+  const isPassword = confirmPasswordInput.type === "password";
+  confirmPasswordInput.type = isPassword ? "text" : "password";
+  toggleConfirmPasswordIcon.src = isPassword ? "../images/showEye.jpg" : "../images/hideEye.png";
+});
 
