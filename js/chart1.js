@@ -38,22 +38,6 @@ function updateServiceChart() {
   if (serviceChartInstance) {
     serviceChartInstance.destroy();
   }
-// Create the chart
-new Chart(serviceChart, {
-  type: 'bar',
-  data: {
-    labels: Months,
-    datasets: [{
-      label: 'Monthly register services',
-      data: Services,
-      borderWidth: 1,
-      backgroundColor: '#587ef4'
-    }]
-  },
-  // options: {
-  //   responsive: true
-  // }
-});
 
 
   // Create a new chart
