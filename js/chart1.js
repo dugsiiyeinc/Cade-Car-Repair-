@@ -1,58 +1,86 @@
 
-saveCurrentMonthIncome()
-function saveCurrentMonthIncome() {
-  // Get the total income from localStorage
-  const serviceCustomers = JSON.parse(localStorage.getItem("customers")) || 0;
-  console.log("serviceCustomers, ", serviceCustomers.length)
-  // serviceCustomers.forEach(cust =>{
-  //   console.log("cus, ", cust)
-  // })
+let serviceChartInstance; // Global variable to hold the chart
 
-  // Retrieve or initialize the monthly income data
-  const monthlyIncome = JSON.parse(localStorage.getItem("monthlyService")) || {};
-
-  // Get the current month
+function saveCurrentMonthService() {
+  const serviceCustomers = JSON.parse(localStorage.getItem("customers")) || [];
   const currentDate = new Date();
+  const currentMonth = currentDate.getMonth();
+  const currentYear = currentDate.getFullYear();
+
+
+
+  const newThisMonth = serviceCustomers.filter(cust => {
+    if (!cust.createdAt) return false;
+    const createdAtDate = new Date(cust.createdAt);
+    return createdAtDate.getMonth() === currentMonth && createdAtDate.getFullYear() === currentYear;
+  });
+
   const monthNames = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'];
-  const currentMonth = monthNames[currentDate.getMonth()];
+  const monthKey = monthNames[currentMonth];
 
-  // Update the current month's income with the new totalIncome
-  monthlyIncome[currentMonth] = serviceCustomers.length;
+  const monthlyIncome = JSON.parse(localStorage.getItem("monthlyService")) || {};
+  monthlyIncome[monthKey] = newThisMonth.length;
 
-  // Save updated monthly income back to localStorage
   localStorage.setItem("monthlyService", JSON.stringify(monthlyIncome));
+
+  // Update chart after saving data
+  updateServiceChart();
 }
 
+function updateServiceChart() {
+  const ctx = document.getElementById('service-chart').getContext('2d');
+  const monthlyService = JSON.parse(localStorage.getItem("monthlyService")) || {};
+  const Months = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'];
+  const Services = Months.map(month => monthlyService[month] || 0);
 
 
-const serviceChart = document.getElementById('service-chart');
-
-// Fetch saved monthly income
-const monthlyService = JSON.parse(localStorage.getItem("monthlyService")) || {};
-
-// List of months
-const Months = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'];
-
-// Prepare the balance for the chart by getting monthly income for each month
-const Services = Months.map(month => monthlyService[month] || 0);
-
-// Create the chart
-new Chart(serviceChart, {
-  type: 'bar',
-  data: {
-    labels: Months,
-    datasets: [{
-      label: 'Monthly register services',
-      data: Services,
-      borderWidth: 1,
-      backgroundColor: '#587ef4'
-    }]
-  },
-  // options: {
-  //   responsive: true
-  // }
-});
+  // Destroy the previous chart if it exists
+  if (serviceChartInstance) {
+    serviceChartInstance.destroy();
+  }
 
 
+  // Create a new chart
+  serviceChartInstance = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: Months,
+      datasets: [{
+        label: 'Monthly register services',
+        data: Services,
+        borderWidth: 1,
+        backgroundColor: '#587ef4'
+      }]
+    },
+     options: {
+        animation: false,
+        plugins: {
+            zoom: {
+                pan: {
+                    enabled: true,
+                },
+                zoom: {
+                    wheel: {
+                        enabled: true,
+                    },
+                    drag: {
+                        enabled: true,
+                    },
+                    mode: 'xy',
+                    animation: {
+                        duration: 0, // disable zoom animation
+                    }
+                }
+            }
+        }
+    }
+  });
+}
 
+// Initialize on first load
+saveCurrentMonthService();
+
+window.onload = function() {
+  saveCurrentMonthService();
+};
 

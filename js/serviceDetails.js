@@ -171,7 +171,8 @@ function getServicegModelForm(){
       date: serviceDate.value,
       description: serviceDescription.value.trim(),
         status: "processing",
-        from: "online"
+        from: "online",
+         createdAt: new Date().toISOString()
     }
     
 
