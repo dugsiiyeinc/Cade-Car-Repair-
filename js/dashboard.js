@@ -388,8 +388,9 @@ function showCustomerLists(searchKeyword = "") {
 
     <td>
     <div class="flex-buttons">
-      <button class="edit-btn edit" data-id="${customer.id}">Edit</button>
-      <button class="delete-btn delete" data-id="${customer.id}">Delete</button>
+      <button class="edit-btn edit" data-id="${customer.id}"> <i class="fa-solid fa-pen-to-square"></i></button>
+      <button class="delete-btn delete" data-id="${customer.id}">
+      <i class="fa-solid fa-trash"></i></button>
     </div>
   </td>
 
@@ -448,7 +449,8 @@ function showCustomerLists(searchKeyword = "") {
 
     // Handle delete button click
     row.querySelector(".delete-btn").addEventListener("click", (e) => {
-      const idToDelete = e.target.getAttribute("data-id");
+    const idToDelete = e.currentTarget.getAttribute("data-id");
+      console.log("cliked", idToDelete)
 
       // Filter out the customer with the matching ID
       const updatedData = getData.filter(
@@ -457,7 +459,7 @@ function showCustomerLists(searchKeyword = "") {
 
       // Save the new list to localStorage
       localStorage.setItem("customers", JSON.stringify(updatedData));
-      window.location.reload();
+      // window.location.reload();
       // Re-render the table
       showCustomerLists();
     });
