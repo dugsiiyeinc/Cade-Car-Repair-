@@ -388,8 +388,9 @@ function showCustomerLists(searchKeyword = "") {
 
     <td>
     <div class="flex-buttons">
-      <button class="edit-btn edit" data-id="${customer.id}">Edit</button>
-      <button class="delete-btn delete" data-id="${customer.id}">Delete</button>
+      <button class="edit-btn edit" data-id="${customer.id}"> <i class="fa-solid fa-pen-to-square"></i></button>
+      <button class="delete-btn delete" data-id="${customer.id}">
+      <i class="fa-solid fa-trash"></i></button>
     </div>
   </td>
 
@@ -448,7 +449,8 @@ function showCustomerLists(searchKeyword = "") {
 
     // Handle delete button click
     row.querySelector(".delete-btn").addEventListener("click", (e) => {
-      const idToDelete = e.target.getAttribute("data-id");
+    const idToDelete = e.currentTarget.getAttribute("data-id");
+      console.log("cliked", idToDelete)
 
       // Filter out the customer with the matching ID
       const updatedData = getData.filter(
@@ -457,7 +459,7 @@ function showCustomerLists(searchKeyword = "") {
 
       // Save the new list to localStorage
       localStorage.setItem("customers", JSON.stringify(updatedData));
-      window.location.reload();
+      // window.location.reload();
       // Re-render the table
       showCustomerLists();
     });
@@ -555,11 +557,7 @@ let expenditureValue = document.querySelector("#expenditure-value");
 updateBalance();
 function updateBalance() {
 
-  if(expenditureValue.value > blance.value){
-  alert("innfeincet balance")
-}
   const income = parseFloat(localStorage.getItem("totalIncome")) || 0;
-
   console.log("incomePrice", income);
   const expensesTotal = parseFloat(localStorage.getItem("currentExpense")) || 0;
   const balance = income - expensesTotal;
@@ -655,12 +653,17 @@ checkAmountButton.addEventListener("click", () => {
 
   const expenditure = parseFloat(userAmount.value);
    const currentBalance = parseFloat(localStorage.getItem("currentBalance")) || 0;
+const currentIncome = parseFloat(localStorage.getItem("totalIncome"))
 
   // Check if expense is greater than current balance
   if (expenditure > currentBalance) {
     alert("you have insufficient funds");
     return false;
+  } 
+  if(currentBalance == null || currentIncome == null){
+    alert("no income")
   }
+ 
   const existingExpense =
     parseFloat(localStorage.getItem("currentExpense")) || 0;
   const newExpense = existingExpense + expenditure;
@@ -674,6 +677,20 @@ checkAmountButton.addEventListener("click", () => {
   productTitle.value = "";
   userAmount.value = "";
 });
+
+resetAllIfNoCustomers()
+function resetAllIfNoCustomers() {
+  const customers = JSON.parse(localStorage.getItem("customers")) || [];
+
+  if (customers.length === 0) {
+    localStorage.setItem("currentBalance", "0");
+    localStorage.setItem("totalIncome", "0");
+    localStorage.setItem("currentExpense", "0");
+    localStorage.removeItem("expenses"); // If you're storing expense items
+    updateBalance(); // Call this if it updates your UI
+  }
+}
+
 
 // On page load
 window.addEventListener("DOMContentLoaded", () => {
@@ -698,7 +715,7 @@ window.addEventListener("DOMContentLoaded", () => {
   updateBalance();
 });
 
-// 10 last recent customer function
+// 5 last recent customer function
 recentCustmores();
 
 function recentCustmores() {
